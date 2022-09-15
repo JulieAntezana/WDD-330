@@ -8,6 +8,6 @@ const links = [
   }
 ]
 
-function showCongratulations(theButtonClicked){
+function showCongratulations(button){
   document.getElementById('result_display').innerHTML =
     "Congratulations, you did it!<p>You got the page to update!</p>"}
