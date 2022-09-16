@@ -190,6 +190,9 @@ function saveNote() {
   showAllNotes();
   document.getElementById("description_input").value = null;
   document.getElementById("note_editor").value = null;
+
+  // console.log(aNoteDescription, aNoteText);
+
   //if (aNoteDescription != null) {
   // aNoteDescription.innerHTML = null;
   // aNoteText.innerHTML = null;
