@@ -188,13 +188,11 @@ function saveNote() {
   localStorage.setItem("all_notes", allNotesString);
 
   showAllNotes();
-  // document.getElementById("description_input").value = null;
-  // document.getElementById("note_editor").value = null;
+  document.getElementById("description_input").value = null;
+  document.getElementById("note_editor").value = null;
   //if (aNoteDescription != null) {
-  aNoteDescription.innerHTML = null;
-  aNoteText.innerHTML = null;
-  // document.getElementById("description_input").value = null;
-  // document.getElementById("note_editor").value = null;
+  // aNoteDescription.innerHTML = null;
+  // aNoteText.innerHTML = null;
 }
 
 function showAllNotes() {
@@ -259,7 +257,7 @@ function addAndSaveCustomer() {
   document.getElementById("age_input").value = null;
   document.getElementById("inseam_input").value = null;
 }
-
+// Retrieve customers' attributes using key - value pairs in order to to display.
 function showAllCustomers() {
   var storedCustomersString = localStorage["all_customers"];
   if (storedCustomersString != null) {
