@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers</title> 
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body onload="showAllCustomers()">
+  <section id="customer_entry_area">
+    <h1>WDD 330 Portfolio</h1>
+    <h2>Our Clothing Customers</h2>
+    <input id="name_input" placeholder="Name"></input>
+    <input id="age_input" placeholder="Age"></input>
+    <input id="inseam_input" placeholder="Inseam"></input>
+    <br>
+    <img src="../img/add_customer.png" onclick="addAndSaveCustomer()"></img>
+  </section>
+  <section id="all_customers_display"></section>
+</body>
+</html>

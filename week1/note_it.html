@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note It!</title> 
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body onload="showAllNotes()">
+	<section id="note_entry_area">
+		<h1>WDD 330 Portfolio</h1>
+    <h2>Note It!</h2>
+		Description: <input id="description_input"></input>
+		<textarea id="note_editor" placeholder="Note it down. Don't forget."></textarea>
+		<br>
+		<button id="onclickBtn" onclick="saveNote()">Save</button>
+	</section>
+	<section id="all_notes_display"></section>
+</body>
+</html>
