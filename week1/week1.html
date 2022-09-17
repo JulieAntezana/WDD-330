@@ -17,17 +17,47 @@
     <li><a href="../week1/even_or_odd.html">Even or Odd?</a></li>
     <li><a href="../week1/group_loop.html">Group Loop</a></li>
     <li><a href="../week1/note_it.html">Note It!</a></li>
+    <li><a href="../week1/customers.html">Customers</a></li>
   </ol>
-  <h2>Week 1 Notes</h2>
-    <p>Focused mostly on exercises. Was able to read all the chapters and work the exercises as a review. The most helpful activity was to insert comments which translate the javascript code to English in main.js</p>
-    <h3>Questions:</h3>
-    <ol>
-      <li>
-        Is localStorage a popular way to persist data in real world applications? Or is it just a work around when we don't want to deal with sessions, or even an actual database?
-
-        
-      </li>
-    </ol>
+  <section>
+    <h2>Week 1 Notes</h2>
+      <p>Focused mostly on exercises. Was able to read all the chapters of "Doing Stuff with Web Things" and work the exercises as a review. The most helpful activity was to insert comments which translate the javascript code to English in main.js.</p>
+      <p>The Master Mobile UX videos gave a lot of helpful advice for designing for mobile devices.</p>
+      <ul class="notes">
+        <li>Think mobile first.</li>
+        <li>Make navigation faster and easier to reach with your thumbs. </li>
+        <li>Reduce cognitive load. Keep forms simple and helpful.</li>
+        <li>Don't default to mask passwords.</li>
+        <li>Use the best keyboard for the job.</li>
+        <li>Link phone numbers to call with a tap.</li>
+        <li>Never use pop up ads.</li>
+        <li>Never ever use pop up ads.</li>
+        <li>Use video ads.</li>
+        <li>Keep ads simple and out of the way.</li>
+      </ul>  
+      <br>
+      <img src="../img/master_mobile_ux.jpg" alt="Master Mobile UX certificate of completion">
+      <br>
+      <h3>Questions:</h3>
+      <p>Is localStorage a popular way to persist data in real world applications? Or is it just a work around when we don't want to deal with sessions, or even an actual database?
+      </p>       
+      <ul>
+        <li>
+          I don't think localStorage is just a work around for sessions or a databases which are stored on the server-side. Data and assets that are saved locally will be quicker and cheaper to download and will be usable offline.
+        </li>
+        <li>          
+          Most dynamic web sites today use a database to store data on a server. They must retrieve the needed data to insert into static page templates and display the resulting HTML on the browser. Session cookies have been used to store data on the client-side. Cookies are still necessary for storing sensitive information such as session IDs and access tokens, but they are more complicated than localStorage.
+        </li>
+        <li>          
+          When the data is not sensitive, localStorage is a great option for storing a limited amount of data on the client-side. We can easily use localStorage for
+        </li>
+        <ul>
+          <li>personalizing user site preferences such as custom widgets, colors, or fonts</li>
+          <li>persisting site activity from a previous session, such as shopping cart contents</li>
+          <li>saving web app documents for use offline</li>
+        </ul>
+      </ul>
+    </section>      
 </body>
 </html>
 

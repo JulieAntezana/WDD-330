@@ -155,6 +155,7 @@ function saveNote() {
   // English: “Hey document, get the element who’s id is ‘description_input’. Take what you find inside the input box on the screen, its value, and store what you find in a variable named ‘aNoteDescription’.”
   var aNoteDescription = document.getElementById("description_input").value;
 
+
   // English: "Hey document, go get the element who’s id is ‘note_editor’. Take what you find inside it, its value, and store what you find in a variable (box) named 'aNoteText'."
   var aNoteText = document.getElementById("note_editor").value;
 
@@ -188,14 +189,10 @@ function saveNote() {
   localStorage.setItem("all_notes", allNotesString);
 
   showAllNotes();
-  document.getElementById("description_input").value = null;
-  document.getElementById("note_editor").value = null;
-
-  // console.log(aNoteDescription, aNoteText);
-
-  //if (aNoteDescription != null) {
-  // aNoteDescription.innerHTML = null;
-  // aNoteText.innerHTML = null;
+  // document.getElementById("description_input").value = null;
+  // document.getElementById("note_editor").value = null;
+  // aNoteDescription.value = "";
+  // aNoteText.value = "";
 }
 
 function showAllNotes() {
