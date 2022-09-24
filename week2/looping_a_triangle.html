@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looping a Triangle</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+<h1>WDD 330 Portfolio</h1>
+<h2>Looping a Triangle</h2>
+<div id="triangle">
+  <p>Write a loop that makes seven calls to console.log to output the following triangle:</p>
+  <p>#</p>
+  <p># #</p>
+  <p># # #</p>
+  <p># # # #</p>
+  <p># # # # #</p>
+  <p># # # # # #</p>
+  <p># # # # # # #</p>
+
+  <p>(See console for result.)</p>
+</div>
+</body>
+<script>
+  for (let line = "#"; line.length < 8; line += "#")
+console.log(line);
+</script>
+</html>  

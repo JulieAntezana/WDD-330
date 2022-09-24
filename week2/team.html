@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Activity</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<h1>WDD 330 Portfolio</h1>
+<h2>Team Activity</h2>
+
+<p>1. Input a Number</p>
+<input type="text" id="inputText">
+
+<p>2. Press button to show the sum of all numbers up to the number input.</p>
+
+<!-- Call the readContent function to show the content in the "results" div -->
+
+<button onClick = "addition()"> Show</button>
+
+<p>3. Input Another Number</p>
+<input type="text" id="numberTwo">
+
+<p>4. Press "+" button to add the two inputs.</p>
+<!-- Call the additionNumbers function to read the numbers from the inputs, find the sum, and output the result in the "numbers" div -->
+<button onClick = "additionNumbers()"> +</button>
+
+<p>5. Press "-" button the subract the second number from the first.</p>
+<!-- Call the subtractionNumbers function to read the number from the inputs, find the difference, and output the result in the "numbers2" div -->
+<button onClick = "subtraction()">-</button>
+
+<p>Results: </p>
+<div id="result"></div>
+<div id="numbers"></div>
+<div id="numbers2"></div>
+</body>
+<script>
+
+/*********** Requirement 1 ***************/
+
+// This function will read the contents of the input, and write them to the div.
+function readContent(){
+let readContent = document.getElementById('inputText').value
+document.getElementById('result').innerHTML = readContent;
+
+console.log(readContent);
+
+}
+
+/*********** Requirement 2 ***************/
+
+// This function expects a number as an argument. It will take that number and sum all the numbers up to the number provided. (ie n=5…so it would do 1+2+3+4+5 = 15) It will return that value.
+function addition(){
+const input = parseInt(document.getElementById('inputText').value);
+
+let add = 0;
+for( let i = 1; i <= input; i++){
+add = add + i ;
+
+}
+
+document.getElementById('numbers').innerHTML = add;
+
+}
+
+/*********** Requirement 3 ***************/
+// This function will take the numbers from each input, add them together, and output the result to the 'numbers' div
+function additionNumbers(){
+
+let inputOne = parseInt(document.getElementById('inputText').value);
+let inputTwo = parseInt(document.getElementById('numberTwo').value);
+let sumNumbers = inputOne + inputTwo;
+
+document.getElementById('numbers').innerHTML = sumNumbers;
+
+}
+
+
+/*********** Stretch Goals ***************/
+
+// Function Expression
+// This function will take the numbers from each input, find the difference, and output the result to the 'numbers2' div
+let subtraction = function subtractionNumbers(){
+let inputOne = parseInt(document.getElementById('inputText').value);
+let inputTwo = parseInt(document.getElementById('numberTwo').value);
+let subNumbers = inputOne - inputTwo;
+
+document.getElementById('numbers2').innerHTML = subNumbers;
+}
+
+subtractionNumbers();
+</script>
+</html>

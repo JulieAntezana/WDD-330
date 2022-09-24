@@ -1,0 +1,127 @@
+body {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: LightGrey;
+}
+
+h1 {
+  color: white;
+  background-color: darkslateblue;
+  padding: 1em;
+}
+
+h2 {
+  padding-left: 10px;
+}
+
+/*****First Event*************/
+
+#result_display {
+  color: palevioletred;
+  background-color:darkgreen;
+  width: 300px;
+  height: 350px;
+  position: relative;
+  top: 20px;
+  left: 10px;
+  padding: 5px;
+}
+
+/*****Story Writer*************/
+
+#story_name {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  padding: 5px;
+}
+
+.button_area {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  padding: 5px;
+}
+
+textarea {
+  width: 800px;
+  height: 250px;
+  background-color: lightyellow;
+  position: relative;
+  top: 30px;
+  left: 10px;
+  padding: 5px;
+}
+
+#story_display {
+  position: relative;
+  top: 40px;
+  left: 10px;
+  padding: 5px;
+}
+
+/*****Even or Odd? and Group Loop*************/
+
+input {
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #666666 inset;
+  height: 25px;
+  width: 200px;
+  text-indent: 5px;
+}
+
+input:focus { 
+  outline:none;
+}
+
+/**************Note It!*************/
+
+#note_editor {
+  margin-top:10px;
+  border:none; 
+  border-radius:5px; 
+  box-shadow:0px 0px 5px #666666 inset;
+  width:90%;
+  height: 150px; 
+  text-indent:5px; 
+  resize:none;
+  overflow: scroll;
+}
+  
+#note_entry_area {
+  width: 500px;
+  height: 500px;
+  padding-left: 5px;
+  border:none; 
+  border-radius:5px; 
+  box-shadow:0px 0px 5px #666666 inset; 
+  text-indent:5px; 
+}
+
+#onclickBtn {
+  position: relative;
+  top: 50px;
+  left: 10px;
+  padding: 5px;
+}
+
+/**************Customers*************/
+
+#customer_entry_area {
+  width: 500px;
+  padding-left: 5px;
+  border:none; 
+  border-radius:5px; 
+  box-shadow:0px 0px 5px #666666 inset; 
+  text-indent:5px; 
+}
+
+img {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border:none; 
+  border-radius:5px; 
+  box-shadow:0px 0px 5px #666666;
+} 
