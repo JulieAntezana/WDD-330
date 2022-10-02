@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This in JavaScript</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body>
+  <h1>WDD 330 Portfolio</h1>
+  <h2>Week 3 Article - This in JavaScript</h2>
+  <h3>Changing <em>this</em> with bind</h3>
+  <p>In this example, the bind method is used to bind the event </p>
+  <p>listener with a reference to the instance: </p> 
+  <p>this.listener = this.speakLeet.bind(this)
+    elem.addEventListener('click', this.listener)</p>
+  <p>Then the event listener can be removed after the click:</p>
+  <p>elem.removeEventListener('click', this.listener)</p>
+  <p>As a result the button can only be used once.</p>
+
+<!-- Changing <em>this</em> with bind
+bind is a method that is present in every function. It allows you to change the this context. This method takes in any number of arguments and returns the bound function.
+
+The first parameter you pass into bind becomes this in the bound function. Once you have created a bound function, you can call it anytime you wish:
+
+The other parameters you pass to bind will be passed as arguments to the original function
+
+Note: bind does not work with arrow functions.
+
+That is really all you need to know about bind.
+
+Now, we can look back at the code to remove event listeners and dissect what is happening: -->
+
+  <p>This button only works once: </p>
+  <button>Click me to add 1337</button>
+</body>
+<script>
+
+function LeetSpeaker (elem) {
+  return {
+    listenClick () {
+
+      // Binds this.speakLeet with a reference to the instance.
+      // Sets bound function to this.listener, so we can remove it later.
+      this.listener = this.speakLeet.bind(this)
+      elem.addEventListener('click', this.listener)
+    },
+
+    speakLeet(e) {
+
+      // Gets the element so we can remove the event listener.
+      const elem = e.currentTarget
+      this.addLeetSpeak()
+
+      // Removes the event listener.  
+      elem.removeEventListener('click', this.listener)
+    }, 
+    
+    addLeetSpeak () {
+      const p = document.createElement('p')
+      p.innerHTML = '1337 15 4W350M3'
+      document.body.append(p)
+    }
+  }
+}
+
+const button = document.body.querySelector('button')
+const leetSpeaker = LeetSpeaker(button)
+leetSpeaker.listenClick()
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaining</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body>
+  <h1>WDD 330 Portfolio</h1>
+  <h3>Week 3 Article - Object Methods: this</h3>
+  
+  <h3>Method Examples</h3>
+  
+
+  <h3>Chaining</h3>
+  <p>There’s a ladder object that allows to go up and down:</p>
+  <p>
+    let ladder = {
+      step: 0,
+      up() {
+        this.step++;
+      },
+      down() {
+        this.step--;
+      },
+      showStep: function() { // shows the current step
+        alert( this.step );
+      }
+    };
+  </p>
+  <p>Now, if we need to make several calls in sequence, we can do it like this:</p>
+  <ul>
+  <li>ladder.up();</li>
+  <li>ladder.up();</li>
+  <li>ladder.down();</li>
+  <li>ladder.showStep(); // 1</li>
+  <li>ladder.down();</li>
+  <li>ladder.showStep(); // 1</li>
+  </ul>
+
+  <p>Modify the code of up, down and showStep to make the calls chainable, like this:</p>
+
+  <p>ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0</p>
+
+</body> 
+
+<script src="https://en.js.cx/test/libs.js"></script>
+<script src="./js/test_ladder.js"></script>
+<script>
+ "use strict";
+
+let ladder = {
+    step: 0,
+    up: function() { 
+      this.step++;
+      return this;
+    },
+    down: function() { 
+      this.step--;
+      return this;
+    },
+    showStep: function() { 
+      alert(this.step);
+      return this;
+    }
+  };
+
+</script>
+</html>

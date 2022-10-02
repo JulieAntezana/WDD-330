@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Calculator</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body>
+  <h1>WDD 330 Portfolio</h1>
+  <h3>Week 3 Article - Object Methods: this</h3>
+  
+  <h3>Method Examples</h3>
+  
+
+  <h3>Create a Calculator </h3>
+  <ol>Create an object calculator with three methods:
+  <li>read() prompts for two values and saves them as object properties with names a and b respectively.</li>
+  <li>sum() returns the sum of saved values.</li>
+  <li>mul() multiplies saved values and returns the result.</li>
+  </ol>
+</body> 
+
+<script src="https://en.js.cx/test/libs.js"></script>
+<script src="./js/test_calculator.js"></script>
+<script>
+ "use strict";
+
+let calculator = {
+  sum() {
+    return this.a + this.b;
+  },
+
+  mul() {
+    return this.a * this.b;
+  },
+
+  read() {
+    this.a = +prompt('a?', 0);
+    this.b = +prompt('b?', 0);
+  }
+};
+
+let ladder = {
+    step: 0,
+    up: function() { 
+      this.step++;
+      return this;
+    },
+    down: function() { 
+      this.step--;
+      return this;
+    },
+    showStep: function() { 
+      alert(this.step);
+      return this;
+    }
+  };
+
+</script>
+</html>
