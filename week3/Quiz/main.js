@@ -50,7 +50,7 @@ const quiz = [
 
 // Save these changes then have a go at playing the game again. Once again, we haven't actually added any functionality, but we have made our code more organized by placing all of the functions inside an object. 
 
-/************* Chapter 6 ***************/
+/************* Chapters 6 - 7 ***************/
 
 // Now we’ve learned about the Document Object Model, we can start to add some dynamic markup to display the questions in our quiz. This will mean we won't need as many alert dialogs.
 
@@ -123,8 +123,6 @@ const game = {
 
 view.start.addEventListener('click', () => game.start(quiz), false);
 
-game.start(quiz);
-  view.hide(view.start);
 // In most cases we have placed a call to view.render() wherever there is an alert() or prompt() dialog that displays the same information in the HTML. We've also used the view.render() method to update the score if a player gains any points.
 
 // Unfortunately, if you have a go at playing the quiz by opening index.html in a browser, you won't notice much difference until right at the end when all the dialogs have finished displaying. You'll notice that the HTML has also been updating in the background.
