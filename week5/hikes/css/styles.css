@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: LightGrey;
+}
+
+h1 {
+  color: white;
+  background-color: darkslateblue;
+  padding: 1em;
+}
+
+h2, h3 {
+  padding-left: 10px;
+}
+
+.hikeGrid {
+  display: grid;
+  grid-row-gap: 10px;
+  align-items: center;
+
+}
+
+/* main > h1 {
+  text-align: center;
+  background-color: indianred;
+  padding: 30px;
+} */
+
+.gridChild {
+  padding: 0;
+  margin: 1px;
+  list-style-type: none;
+}
+.gridChild div {
+  padding: 0 0.5em;
+}
+.gridChild > h2 {
+  text-align: center;
+  background-color: burlywood;
+  text-decoration: none;
+}
+
+#buttonGrid {
+  display: grid;
+  grid-template-columns: 119px;
+  grid-template-rows: 30px;
+  grid-column-gap: 5px;
+  justify-content: center;
+  align-content: center;
+}
+
+.Notes {
+  text-decoration: none;
+  border: none;
+  border-radius: 60px;
+  color: white;
+  outline: none;
+  background-color: #E13620;
+  background-image: linear-gradient(to right,#23AFCC, #E13620);
+  padding: 10px;
+}

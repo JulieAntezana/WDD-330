@@ -1,0 +1,35 @@
+body {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: LightGrey;
+  }
+  
+  h1 {
+    color: white;
+    background-color: darkslateblue;
+    padding: 2em;
+  }
+  
+  h2, h3 {
+    padding-left: 10px;
+  }
+
+img {
+    max-width: 50%;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+li h2 {
+    grid-column: span 2;
+    text-align: center;
+    background-color: lightblue;
+    padding: 1em;
+}

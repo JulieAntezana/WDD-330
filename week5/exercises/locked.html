@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Locked Box</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/main.js"></script>
+  </head>
+  <body>
+    <h1>WDD 330 Portfolio</h1>
+    <h2>The Locked Box</h2>
+
+    <h3>
+      Consider the following (rather contrived) object:
+    </h3>
+
+    <h3>
+      <h3>const box = {</h3>
+
+      <h3>locked: true,</h3>
+      <h3>unlock() { this.locked = false; },</h3>
+      <h3>lock() { this.locked = true;  },</h3>
+      <h3>_content: [],</h3>
+      <h3>get content() {</h3>
+      <h3>if (this.locked) throw new Error("Locked!");</h3>
+      <h3>return this._content;</h3>
+      <h3>}</h3>
+      <h3>};</h3>
+      
+      <h3>It is a box with a lock. There is an array in the box, but you can get at it only when the box is unlocked. Directly accessing the private _content property is forbidden.</h3>
+
+      <h3>Write a function called withBoxUnlocked that takes a function value as argument, unlocks the box, runs the function, and then ensures that the box is locked again before returning, regardless of whether the argument function returned normally or threw an exception.</h3>
+
+      <h3>const box = {</h3>
+
+      <h3>locked: true,</h3>
+      <h3>unlock() { this.locked = false; },</h3>
+      <h3>lock() { this.locked = true;  },</h3>
+      <h3>_content: [],</h3>
+      <h3>get content() {</h3>
+      <h3>if (this.locked) throw new Error("Locked!");</h3>
+      <h3>return this._content;</h3>
+      <h3>}</h3>
+      <h3>};</h3>
+
+      <h3>function withBoxUnlocked(body) {</h3>
+      <h3>  // Your code here.</h3>
+      <h3>}</h3>
+
+      <h3>withBoxUnlocked(function() {</h3>
+      <h3>  box.content.push("gold piece");</h3>
+      <h3>});</h3>
+
+      <h3>try {</h3>
+      <h3>  withBoxUnlocked(function() {</h3>
+      <h3>    throw new Error("Pirates on the horizon! Abort!");</h3>
+      <h3>  });</h3>
+      <h3>} catch (e) {</h3>
+      <h3>  console.log("Error raised: " + e);</h3>
+      <h3>}</h3>
+      <h3>console.log(box.locked);</h3>
+      <h3>// → true</h3>
+
+
+    <h3>
+      For extra points, make sure that if you call withBoxUnlocked when the box is already unlocked, the box stays unlocked.
+    </h3>
+
+    <h3>
+      Hint...This exercise calls for a finally block. Your function should first unlock the box and then call the argument function from inside a try body. The finally block after it should lock the box again.
+    </h3>
+
+    <h3>To make sure we don’t lock the box when it wasn’t already locked, check its lock at the start of the function and unlock and lock it only when it started out locked.</h3>
+
+    <h3>Check the console for the answers.</h3>
+
+    <script>
+    const box = {
+      locked: true,
+      unlock() { this.locked = false; },
+      lock() { this.locked = true;  },
+      _content: [],
+      get content() {
+        if (this.locked) throw new Error("Locked!");
+        return this._content;
+      }
+    };
+
+    function withBoxUnlocked(body) {
+      let locked = box.locked;
+      if (!locked) {
+        return body();
+      }
+
+      box.unlock();
+      try {
+        return body();
+      } finally {
+        box.lock();
+      }
+    }
+
+    withBoxUnlocked(function() {
+      box.content.push("gold piece");
+    });
+    try {
+      withBoxUnlocked(function() {
+        throw new Error("Pirates on the horizon! Abort!");
+      });
+    } catch (e) {
+      console.log("Error raised:", e);
+    }
+
+console.log(box.locked);
+// → true
+    </script>
+  </body>
+</html>

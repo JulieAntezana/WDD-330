@@ -1,0 +1,15 @@
+body {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: LightGrey;
+}
+
+h1 {
+  color: white;
+  background-color: darkslateblue;
+  padding: 1em;
+}
+
+h2, h3 {
+  padding-left: 10px;
+}
