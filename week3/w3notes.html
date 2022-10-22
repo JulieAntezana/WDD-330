@@ -1,0 +1,1811 @@
+<!-- 
+JavaScript: Novice to Ninja, 2nd Edition
+
+Page 166  CHAPTER 5 Objects
+
+Object Literals
+
+An Object literal is an object that is created directly in the language by wrapping all properties and methods in curly braces{}. Object literals in JS allow objects to be created quickly without the need for defining a class. Objects are mutable at any time the program is running.
+
+ 
+
+> const superman = {
+
+... name: 'Superman',
+
+... 'real name': 'Clark Kent',
+
+... height: 75,
+
+... weight: 235,
+
+... hero: true,
+
+... villain: false,
+
+... allies: ['Batman','Supergirl','Superboy'],
+
+... fly() {
+
+... return 'Up up and away!';
+
+... }
+
+... }
+
+ 
+
+Empty object. 2 examples
+
+> const spiderman = {};           //this way looks much simpler
+
+> const spiderman = new Object(); //constructor function – not recommended
+
+ 
+
+Access object:
+
+Superman.name // via dot notation – much more common
+
+Superman[‘name’] .. via bracket notation – allows access to nonstandard property and method names that don’t follow the variable naming rules. Also allows valuation of expression inside of the brackets
+
+ 
+
+Bracket notation also allows a new property to be added to an object using a symbol as a key
+
+> const name = Symbol('name');
+
+> const supergirl = {[name]: 'Supergirl'};
+
+> supergirl[name];
+
+'Supergirl'
+
+> supergirl.name;  //that didn’t work
+
+undefined
+
+ 
+
+> const realName = Symbol('real name');
+
+> supergirl[realName] = 'Kara Danvers';
+
+'Kara Danvers'
+
+> const daredevil = {[name]:'Daredevil', [realName]: 'Matt Murdoch'};
+
+> daredevil[realName];
+
+'Matt Murdoch'
+
+ 
+
+To call an object’s method you can use dot notation or bracket notation:
+
+Superman.fly();
+
+Superman[‘fly’];
+
+ 
+
+Checking if properties or methods exist
+
+‘city’ in superman;   //exists?
+
+False
+
+Superman.city !== undefined; //doesn’t return undefined?
+
+False
+
+Superman.hasOwnProperty(‘city’);     //using hasOwnProperty() method
+
+False
+
+ 
+
+Finding all properties of an object
+
+> for(const key in superman) {                   //created variable called key
+
+... console.log(key + ": " + superman[key]);     //iterate using key to log property
+
+... }                                            //superman[key] to look up the value
+
+name: Superman
+
+real name: Clark Kent
+
+height: 75
+
+weight: 235
+
+hero: true
+
+villain: false
+
+allies: Batman,Supergirl,Superboy
+
+fly: fly() {
+
+return 'Up up and away!';
+
+}
+
+ 
+
+Object.keys() method returns arry of all the keys of any object that is provided as argument
+
+> for (const key of Object.keys(superman)){
+
+... console.log(key);
+
+... }
+
+name
+
+real name
+
+height
+
+weight
+
+hero
+
+villain
+
+allies
+
+fly
+
+ 
+
+Object.values()
+
+> for(const value of Object.values(superman)){
+
+... console.log(value);
+
+... }
+
+Superman
+
+Clark Kent
+
+75
+
+235
+
+true
+
+false
+
+[ 'Batman', 'Supergirl', 'Superboy' ]
+
+[Function: fly]
+
+ 
+
+Object.entries()
+
+> for(const [key,value] of Object.entries(superman)) {
+
+... console.log(`${key}: ${value}`);
+
+... }
+
+name: Superman
+
+real name: Clark Kent
+
+height: 75
+
+weight: 235
+
+hero: true
+
+villain: false
+
+allies: Batman,Supergirl,Superboy
+
+fly: fly() {
+
+return 'Up up and away!';
+
+}
+
+ 
+
+Adding properties:  //properties do not always appear in order entered
+
+> superman.city = 'Metropolis';
+
+'Metropolis'
+
+> superman
+
+{
+
+  name: 'Superman',
+
+  'real name': 'Clark Kent',
+
+  height: 75,
+
+  weight: 235,
+
+  hero: true,
+
+  villain: false,
+
+  allies: [ 'Batman', 'Supergirl', 'Superboy' ],
+
+  fly: [Function: fly],
+
+  city: 'Metropolis'
+
+}
+
+ 
+
+Changing property value:
+
+> superman['real name'] = 'Kal-El';
+
+'Kal-El'
+
+> superman
+
+{
+
+  name: 'Superman',
+
+  'real name': 'Kal-El',
+
+  height: 75,
+
+  weight: 235,
+
+  hero: true,
+
+  villain: false,
+
+  allies: [ 'Batman', 'Supergirl', 'Superboy' ],
+
+  fly: [Function: fly],
+
+  city: 'Metropolis'
+
+}
+
+ 
+
+Remove property:    //fly() method has been removed
+
+> delete superman.fly;
+
+true
+
+> superman
+
+{
+
+  name: 'Superman',
+
+  'real name': 'Kal-El',
+
+  height: 75,
+
+  weight: 235,
+
+  hero: true,
+
+  villain: false,
+
+  allies: [ 'Batman', 'Supergirl', 'Superboy' ],
+
+  city: 'Metropolis'
+
+}
+
+ 
+
+Nested Objects:
+
+> const jla = {
+
+... superman:{realName:'Clark Kent'},
+
+... batman:{realName: 'Bruce Wayne'},
+
+... wonderWoman:{realName: 'Diana Prince'},
+
+... flash:{realName: 'Barry Allen'},
+
+... aquaman:{realName:'Arthur Curry'},
+
+... }
+
+> jla.flash.realName
+
+'Barry Allen'
+
+ 
+
+Objects are copied by reference:  CAUTION
+
+> const thor = {name:'Thor'};
+
+undefined
+
+> const cloneThor = thor;
+
+undefined
+
+> cloneThor;
+
+{ name: 'Thor' }
+
+> cloneThor.name = 'Clor';
+
+'Clor'
+
+> thor.name             //Here is a problem. 2 objects pointing to same reference in memory
+
+'Clor'                  //Changing cloneThor.name also changed thor.name
+
+ 
+
+Objects as parameters to functions:
+
+> function greet({greeting,name,age}) {
+
+... return `${greeting}! My name is ${name} and I am ${age} years old.`;
+
+... }
+
+> greet({greeting:'What\'s up',age:10,name:'Bart'});
+
+"What's up! My name is Bart and I am 10 years old."
+
+ 
+
+Using default parameters:   //referred to as using named paraeters
+
+> function greet({greeting='Hello', name, age=18}){
+
+... return `${greeting}! My name is ${name} and I am ${age} years old`;
+
+... }
+
+> greet({name: 'Lisa', age:8});
+
+'Hello! My name is Lisa and I am 8 years old'
+
+ 
+
+Using “this”
+
+> const dice = {
+
+... sides:6,
+
+... roll(){
+
+... return Math.floor(this.sides * Math.random()) +1;
+
+... }
+
+... }
+
+> dice.roll();
+
+3
+
+> dice.roll();
+
+4
+
+> dice.roll();
+
+6
+
+> dice.roll();
+
+2
+
+ 
+
+> dice.sides = 20;   //can change number of side easily
+
+20
+
+> dice.roll();
+
+15
+
+> dice.roll();
+
+1
+
+ 
+
+Namespacing by using object literals to avoid naming collisions:
+
+> const myMaths= {
+
+... square(x){
+
+... return x*x;
+
+... },
+
+... mean(array,callback) {
+
+... if(callback){
+
+... array.map(callback);
+
+... }
+
+... const total = array.reduce((a,b) => a+b);
+
+... return total/array.length;
+
+... }
+
+... }
+
+> myMaths.square(3);       //invoke with preceding namespace
+
+9
+
+> myMaths.mean([1,2,3])  //avoids clashes with any other functions called mean()
+
+2
+
+ 
+
+Built-in Objects:
+
+JSON or JavaScript Object Notation data-storage format.
+
+JSON requirements: property names must be double-quoted; permitted values are double-quoted string, numbers, true, false, null, arrays, and object; function are not permitted values.
+
+> const batman = '{"name": "Batman", "real name": "Bruce Wayne", "height":74, "weight":210, "hero":true, "villain":false, "allies":["Robin","Batgirl","Superman"]}'
+
+Parse() method: returns JS object
+
+> JSON.parse(batman);
+
+{
+
+  name: 'Batman',
+
+  'real name': 'Bruce Wayne',
+
+  height: 74,
+
+  weight: 210,
+
+  hero: true,
+
+  villain: false,
+
+  allies: [ 'Robin', 'Batgirl', 'Superman' ]
+
+}
+
+ 
+
+Stringify() method: takes JS object and returns JSON string
+
+> const wonderWoman = {
+
+... name:'Wonder Woman',
+
+... 'real name':'Diana Prince',
+
+... height:72,
+
+... weight:165,
+
+... hero:true,
+
+... villain:false,
+
+... allies:['Wonder Girl','Donna Troy', 'Superman'],
+
+... lasso: function(){
+
+... console.log('You will tell the truth');
+
+... }
+
+... }
+
+> JSON.stringify(wonderWoman);
+
+'{"name":"Wonder Woman","real name":"Diana Prince","height":72,"weight":165,"hero":true,"villain":false,"allies":["Wonder Girl","Donna Troy","Superman"]}'   //Note how the lasso function was simply ignored by stringify() because functions are not allowed in JSON data
+
+ 
+
+Math Object has immutable properties
+
+There are Math constants like Math.PI and others
+
+Math methods:  many others.
+
+> Math.abs(5);
+
+5
+
+> Math.abs(-4.6);
+
+4.6
+
+> Math.ceil(4.2);
+
+5
+
+> Math.ceil(-4.2);
+
+-4
+
+> Math.floor(4.2);
+
+4
+
+> Math.floor(-4.2);
+
+-5
+
+> Math.round(4.5);
+
+5
+
+> Math.round(4.499);
+
+4
+
+> Math.round(-4.2);
+
+-4
+
+> Math.trunc(4.9);
+
+4
+
+> Math.exp(1);
+
+2.718281828459045
+
+> Math.exp(0);
+
+1
+
+> Math.exp(-3);
+
+0.049787068367863944
+
+> Math.pow(3,2);
+
+9
+
+> Math.pow(27, 1/3);
+
+3
+
+> Math.sqrt(121);
+
+11
+
+> Math.cbrt(8);
+
+2
+
+> Math.hypot(3,4);
+
+5
+
+> Math.log(1);
+
+0
+
+> Math.log(10);
+
+2.302585092994046
+
+> Math.log(0);
+
+-Infinity
+
+> Math.log(-2);
+
+NaN
+
+> Math.max(1,2,3);
+
+3
+
+> Math.min(1,2,3);
+
+1
+
+> Math.sin(5);
+
+-0.9589242746631385
+
+> Math.cos(5);
+
+0.28366218546322625
+
+> Math.tan(8);
+
+-6.799711455220379
+
+> Math.random();
+
+0.8103476149138276
+
+ 
+
+Date Object:
+
+> const today = new Date();
+
+> today.toString();
+
+'Mon Sep 26 2022 12:59:22 GMT-0500 (Central Daylight Time)'
+
+> const christmas = new Date('2022 12 25');
+
+> christmas.toString();
+
+'Sun Dec 25 2022 00:00:00 GMT-0600 (Central Standard Time)'
+
+ 
+
+Date Getter Methods:  getTime() getTimezoneOffse() getYear() getDay() getUTCDay() getDate() getMonth() getYear() getFullYear() getHours() getUTCHours getMinutes() getUTCMinutes(), getSeconds(), getUTCSeconds, getMilliseconds() getUTCMilliseconds()
+
+> const solstice = new Date(2022, 5, 21); //notice how month starts at zero as do days of week
+
+> solstice.getDay();
+
+2  //Tuesday
+
+ 
+
+Date Setter Methods:
+
+Most are equivalent to date getter methods
+
+ 
+
+RegExp Object (regular expressions):  NEED TO READ MORE ABOUT THIS TOPIC
+
+Preferred way is literal notation
+
+> const pattern = /[a-zA-Z]+ing$/;   //words ending in ‘ing’
+
+Or by constructor function:
+
+> const pattern = new RegExp('[a-zA-z]+ing');  //some advantages see page 203 – good for user input from a form. Also can use variable.
+
+ 
+
+Test() method:
+
+> pattern.test('joke');
+
+false
+
+> pattern.test('joking');
+
+True
+
+ 
+
+Exec() method:  returns array containing the first match found or null if no result
+
+> pattern.exec('joke');
+
+null
+
+> pattern.exec('joking');
+
+[ 'joking', index: 0, input: 'joking', groups: undefined ]
+
+ 
+
+Basic Regular Expressions . a string of characters… so the following will math the string “JavaScript”.
+
+> const newPattern = /JavaScript/;
+
+> newPattern
+
+/JavaScript/                           //NOT FOLLOWING THIS EXAMPLE. WHAT?
+
+ 
+
+Character Groups:
+
+> const vowels = /[aeiou]/;
+
+> vowels
+
+/[aeiou]/
+
+ 
+
+^ symbol negates the RegExp    //THIS CONCEPT IS CONFUSING AS ^ can also mean “the beginning of input”
+
+> const pattern4 = /[^A-Z]/;  //false if string has all caps
+
+> pattern4.test('Java');
+
+true
+
+> pattern4.test('java');
+
+true
+
+> pattern4.test('JAVA');
+
+false
+
+ 
+
+> pattern2 = /[Jj][aeiou]v[aeiou]/;
+
+/[Jj][aeiou]v[aeiou]/
+
+> pattern2.test('JavaScript'); //J a v a …then the rest does not matter
+
+true
+
+> pattern2.test('jive');
+
+true
+
+> pattern2.test('hello');
+
+False
+
+ 
+
+Regular Expression Properties: g – global, i ignore case, m multiline
+
+> pattern5 = /java/i;
+
+/java/i
+
+> pattern5.test('JavaScript');
+
+True
+
+ 
+
+Special characters known as metacharacters:pg 207
+
+. any character except line breaks
+
+\w any word character is equivalent to [A-Za-z0-9_]
+
+\W any non-word character [\^A-Za-z0-9_]
+
+\d any digit
+
+\D any non-digit
+
+\s any whitespace character like [ \t\r\n\f]
+
+\S any non-whitespace character like [^ \t\r\n\f]
+
+ 
+
+>pattern6 = /^J[aeiou]+\w+ing$/
+
+> pattern6.test('Joking');      //WHY IS THIS TRUE doesn’t ^ mean no J allowed?
+
+true
+
+> pattern6.test('jeering');     // Why is this false –
+
+false
+
+> pattern6.test('Jeering');
+
+true
+
+> pattern6.test('Jeeringer'); //Is this because the $?
+
+False
+
+ 
+
+> const pattern7 = /J[aeiou]+\w+ing$/;  //CONFUSING removed ^ and got same results
+
+undefined
+
+> pattern7.test('Joking');
+
+true
+
+> pattern7.test('jeering');
+
+false
+
+> pattern7.test('Jeering');
+
+true
+
+> pattern7.test('Jeeringer');
+
+false
+
+ 
+
+Modifiers:      pgs 207-208 ….not really understanding how these work
+
+? preceding token optional
+
+* matches one or more occurrences of the preceding token
+
++
+
+{n}
+
+{n,}
+
+{,m}
+
+{n,m}
+
+^ marks the position immediately before the first character in the string
+
+$ marks the position immediately after the last character in the string
+
+ 
+
+Greedy vs Lazy Modifiers: greedy will match the longest possible string. Lazy match the shortest possible string by add and extra after the modifier.
+
+> const word = 'abracadabra';
+
+> const greedyPattern = /a.+a/;
+
+undefined
+
+> greedyPattern.exec(word);
+
+[ 'abracadabra', index: 0, input: 'abracadabra', groups: undefined ]
+
+ 
+
+> const lazyPattern = /a.+?a/;
+
+> lazyPattern.exec(word);
+
+[ 'abra', index: 0, input: 'abracadabra', groups: undefined ]
+
+ 
+
+String Methods:
+
+Many string methods accept regular expression as a parameter.
+
+> 'Hello there'.split(/\s+/);  //splits with one or more whitespace characters
+
+[ 'Hello', 'there' ]  // returns array
+
+ 
+
+> 'JavaScript'.match(/[aeiou]/); //returns first match of vowel
+
+[ 'a', index: 1, input: 'JavaScript', groups: undefined ]
+
+ 
+
+> 'JavaScript'.match(/[aeiou]/g); //returns all matches of vowels
+
+[ 'a', 'a', 'i' ]
+
+ 
+
+> "I'm learning JavaScript".search(/java/i); //returns index position of first match
+
+13
+
+ 
+
+> 'JavaScript'.replace(/[aeiou]/ig,'*');  //replaces vowels with *
+
+'J*v*Scr*pt'
+
+ 
+
+Matched Groups:  Not understanding this well. Need further work on this topic. Pg 211
+
+Sub-patterns can be created inside a regular expression by placing inside parentheses. Known as capturing groups. They are stored in an array of matches.
+
+ 
+
+ 
+
+----------------------------------------
+
+Chapter 6 The Document Object Model (DOM) page 216
+
+ 
+
+DOM allows access to elements on a web page and enable interaction with the page by adding and removing elements, changing the order, content and attributed of elements and their styling.
+
+Represents the html document as a network of connected nodes.
+
+HTML tag is at the root node.
+
+>const body = document.body;
+
+>typeof body
+
+'object'
+
+>body.nodeType
+
+1   //element    see below.
+
+ 
+
+Code Type
+
+1        element
+
+2        attribute
+
+3        text
+
+8  comment
+
+9  body
+
+  
+
+ 
+
+>body.nodeName
+
+'BODY'
+
+ 
+
+Node Lists – they are array-like objects but they are not arrays. Can use indexing and .length property on them. Can iterate through every element in a for loop.
+
+ for (let i=0 ; i < document.images.length ; i++) {
+
+// do something with each image using document.images[i]
+
+}
+
+Can easily turn a node list into an array.
+
+const imageArray = Array.from(document.images); or by using the spread operator
+
+const imageArray = [...document.images];
+
+ 
+
+Document.body returns the body element of a web page.
+
+Document.images returns a node list of all the images in the document
+
+Document.links returns a nodel liest of all the <a> elements and <area> elements that have an href attribute
+
+Document.anchors returns a node lise of all the <a> elements that have a name attribute
+
+Document.forms returns a node list of all the forms in the document
+
+ 
+
+ 
+
+USING this HTML code for examples:
+
+<html lang="en"><head>
+
+    <meta charset="utf-8">
+
+    <title>Justice League</title>
+
+  </head>
+
+  <body>
+
+    <header>
+
+      <h1 id="title">Justice League</h1>
+
+    </header>
+
+    <ul id="roster">
+
+      <li class="hero">Superman</li>
+
+      <li class="vigilante hero" id="bats">Batman</li>
+
+      <li class="hero">Wonder Woman</li>
+
+    </ul>
+
+  <script src="ninja.js"></script>
+
+</body></html>
+
+ 
+
+getElementByID() Method
+
+>const h1 = document.getElementById('title');
+
+>h1
+
+<h1 id=​"title">​Justice League​</h1>​
+
+Every id should be unique to one element.
+
+ 
+
+getElementByTagName() Method: returns live node list of all the elements with tag name
+
+>const listItems = document.getElementsByTagName('li');
+
+>listItems
+
+HTMLCollection(3) [li.hero, li#bats.vigilante.hero, li.hero, bats: li#bats.vigilante.hero]
+
+Can use index notation to access items:
+
+>listItems[0];
+
+>li class=​"hero">​…​</li>​
+
+ 
+
+getElementByClassName():
+
+>const heroes = document.getElementsByClassName('hero');
+
+>heroes.length
+
+3
+
+ 
+
+Query Selectors: very powerful method that can emulate all the methods discussed.
+
+Document.querySelector() use CSS notation to find the first element in the document that matches a CSS selector. Can be called on any element
+
+Document.querySelectorAll() uses Css notation to find all. Returns a node list of all the matching elements.
+
+>document.querySelector('#bats');
+
+>li class=​"vigilante hero" id=​"bats">​…​</li>​
+
+ 
+
+> document.querySelectorAll('.hero');
+
+NodeList(3) [li.hero, li#bats.vigilante.hero, li.hero]  //this is not a live node list
+
+ 
+
+Very powerful selector. This example selects last list item in the document:
+
+>const wonderWoman = document.querySelector('li:last-child');
+
+ 
+
+>const ul = document.querySelector('ul#roster');
+
+> ul
+
+>ul id=​"roster">​…​</ul>​
+
+ 
+
+> const batman = ul.querySelector('li#bats')
+
+>batman
+
+>li class=​"vigilante hero" id=​"bats">​…​</li>​
+
+ 
+
+> const heroes = document.getElementById('roster');
+
+> heroes.childNodes
+
+NodeList(7) [text, li.hero, text, li#bats.vigilante.hero, text, li.hero, text]
+
+0:text
+
+1:li.hero
+
+2:text
+
+3:li#bats.vigilante.hero
+
+4:text
+
+5:li.hero
+
+6:text
+
+length:7
+
+[[Prototype]]:NodeList
+
+ 
+
+>heroes.children
+
+HTMLCollection(3) [li.hero, li#bats.vigilante.hero, li.hero, bats: li#bats.vigilante.hero]
+
+> heroes.children.length
+
+3
+
+Be careful with first or last child because these nodes can often be a text node (often an empty string) generated by whitespace characters
+
+> heroes.firstChild //first child of a node
+
+#text
+
+>heroes.lastChild
+
+#text
+
+ 
+
+>wonderWoman.parentNode //returns parent node of element
+
+<ul id=​"roster">​…​</ul>​
+
+ 
+
+>wonderWoman.nextSibling //return next adjacent node of the same parent
+
+#text
+
+ 
+
+>wonderWoman.previousSibling //these often return blank text node
+
+#text
+
+ 
+
+Finding value of a node:
+
+>wonderWoman.textContent
+
+'Wonder Woman'
+
+ 
+
+Getting element attributes:
+
+< wonderWoman.getAttribute('class');
+
+'hero'
+
+ 
+
+Setting element attributes:
+
+>wonderWoman.setAttribute('class', 'villain');
+
+>wonderWoman.getAttribute('class');
+
+'villain'
+
+ 
+
+.setAttribute can be used to add a new attribute to an element
+
+>wonderWoman.setAttribute('id','amazon');
+
+>wonderWoman.getAttribute('id');
+
+'amazon'
+
+ 
+
+Classes of an element:
+
+className property can be set directly
+
+< wonderWoman.className;
+
+'villain'
+
+ 
+
+>wonderWoman.className = 'hero' //CAUTION: changing className property of an element by assignment will overwrite all other classes that have already been set on the element
+
+ 
+
+>wonderWoman.classList.add('warrior');
+
+>wonderWoman.className;
+
+'villain warrior'
+
+>wonderWoman.classList.remove('warrior');
+
+>wonderWoman.className;
+
+'villain'
+
+>wonderWoman.classList.toggle('hero');
+
+true
+
+>wonderWoman.classList.toggle('hero');
+
+False
+
+>wonderWoman.classList.contains('villain');
+
+True
+
+ 
+
+Creating Dynamic Markup:
+
+>const flash = document.createElement('li'); //creates an empty element
+
+> const flashText = document.createTextNode('Flash');  //the text that goes in the node
+
+> flash.appendChild(flashText); //links the two together
+
+"Flash"
+
+ 
+
+Simpler way to do the above:
+
+>const flash = document.createElement('li');
+
+>flash.textContent = 'Flash';
+
+ 
+
+Even better way. Write a function to add element:
+
+>function createElement (tag,text) {
+
+const el = document.createElement(tag);
+
+el.textContent = text;
+
+return el
+
+}
+
+>const aquaman = createElement('li','Aquaman');
+
+ 
+
+Adding created elements to page:
+
+heroes.appendChild(aquaman);
+
+Other Actions:
+
+.insertBefore()
+
+.insertAfter()
+
+.removeChild()
+
+
+/*
+innerHTML the raw HTML is returned. innerHTML will not run inside a <script> tag to prevent malicious code execution
+
+ 
+
+can change CSS styling:
+
+> const superman = heroes.children[0];
+
+>superman.style.border = "red 2px solid";
+
+'red 2px solid'
+
+>superman.style.backgroundColor = 'blue';
+
+'blue'
+
+ 
+
+Hide an element:  Block to bring back
+
+>superman.style.display = 'none';
+
+'none'
+
+>superman.style.display = 'block';
+
+'block'
+
+ 
+
+Checking style properties:
+
+getComputedStyle() return all css properties and they are numerous
+
+getPropertyCSSValue()  //causes an error in Chrome browser
+
+ 
+
+ 
+
+----------------------------
+
+CHAPTER 7   EVENTS
+
+Page 258
+
+ 
+
+Event Listeners
+
+JS uses non-blocking approach. Event listeners actively await for an event then do something. This is the preferred way in JS. addEventListener()
+
+To listen for a click anywhere on the page we could use:
+
+>document.body.addEventListener("click", doSomething); //would call function doSomething()
+
+ 
+
+Click event is all of these things: click of mouse, press of Enter Key, or tap of screen.
+
+ 
+
+Inline Event Handlers: these are in the markup HTML like:
+
+<p onclick="console.log('You Clicked Me!')">Click Me</p>
+
+Inline event handling is outdated and should be avoided. Though it still works.
+
+ 
+
+.onclick() method in JS is also considered outdated and best avoided: document.onclick = function()……
+
+ 
+
+Preferred way:
+
+document.body.addEventListener('click',doSomething);  The first parameter is the type of event and the second is a callback function that is invoked. Important to not include parentheses to the second parameter.
+
+ 
+
+Sample code for exercises:
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8" />
+
+    <title>Events Examples</title>
+
+    <style>
+
+      p {
+
+        width: 200px;
+
+        height: 200px;
+
+        margin: 10px;
+
+        background-color: #ccc;
+
+        float: left;
+
+      }
+
+      .highlight {
+
+        background-color: red;
+
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <p id="click">Click On Me</p>
+
+    <p id="dblclick">Double Click On Me</p>
+
+    <p id="mouse">Hover On Me</p>
+
+    <script src="events.js"></script>
+
+  </body>
+
+</html>
+
+
+
+addEventListener() for a click anywhere on the page:
+
+>function doSomething(){
+
+console.log('Something Happened!');
+
+}
+
+>addEventListener('click', doSomething);
+
+ 
+
+<< Something Happened! Is what appears in console when there is a click on page.
+
+ 
+
+Event Object: An event object is created every time an event is triggered and contains information about the type of event.
+
+function doSomething(event){
+
+console.log(event.type);
+
+}
+
+addEventListener("click", doSomething);
+
+Result: << click  //the type of trigger event
+
+ 
+
+Event Target:
+
+.target property returns a reference to the node that fired the event.
+
+function doSomething(event){
+
+console.log(event.target);
+
+}
+
+<< <p id='click'>Click On Me</p>
+
+<p id="dblclick">Double Click On Me</p>
+
+ 
+
+Event Coordinates:
+
+Can use screenX and screenY properties to show the number of pixels from the left and top of the screen from where the event took place. There is also clientX, clientY (usually the browser window), and pageX, pageY (takes into account on whether page has been scrolled)
+
+function doSomething(event){
+
+console.log(`screen: (${event.screenX},${event.screenY}),
+
+page: (${event.pageX},${event.pageY}),
+
+client: (${event.screenX},${event.screenY})`)
+
+}
+
+screen: (854,391),
+
+page: (820,180), client:
+
+(854,391)
+
+ 
+
+Event Types:
+
+Mouse Events:
+
+const clickParagraph = document.getElementById("click");
+
+clickParagraph.addEventListener("click", () => console.log("click"));
+
+clickParagraph.addEventListener("mousedown", () => console.log("down"));
+
+clickParagraph.addEventListener("mouseup", () => console.log("up"));
+
+down
+
+up
+
+click
+
+ 
+
+const dblclickParagraph = document.getElementById("dblclick");
+
+dblclickParagraph.addEventListener("dblclick", highlight);
+
+function highlight(event) {
+
+  event.target.classList.toggle("highlight");
+
+}
+
+Result: paragraph marked Double Click On Me – background toggles between grey and red.
+
+ 
+
+CAUTION: can be problematic using .click and .dblclick on same element. Hard to tell difference between one and double click so the .click() methods always fires even on a double click.
+
+ 
+
+const mouseParagraph = document.getElementById("mouse");
+
+mouseParagraph.addEventListener("mouseover", highlight);
+
+mouseParagraph.addEventListener("mouseout", highlight);
+
+Result: “Hover Over Me” paragraph background turns red when mouse over and grey when mouse out.
+
+ 
+
+mouseParagraph.addEventListener('mousemove', () =>
+
+console.log('You Moved!') );
+
+ You Moved! Appears in console whenever mouse moves over third paragraph
+
+ 
+
+Keyboard Events:
+
+Keydown when pressed down. Keypress comes after keydown and before keyup and only applies to keys that produce character input and delete. Keyup when key released.
+
+ 
+
+addEventListener("keydown", highlight);
+
+result: background toggles between red and grey with keydown
+
+ 
+
+addEventListener("keyup", (event) =>
+
+  console.log(`You stopped pressing the key on ${new Date()}`)
+
+);
+
+You stopped pressing the key on Tue Sep 27 2022 11:57:54 GMT-0500 (Central Daylight Time)
+
+ 
+
+addEventListener("keypress", (event) =>
+
+  console.log(`You pressed the ${event.key} character`)
+
+);
+
+You pressed the k character
+
+ 
+
+Modifier keys: shift, ctrl, alt, cmd on Mac fire keydown and keyup only as they do not produce characters. CAUTION: some modifier key combos have default actions assigned.
+
+addEventListener("keydown", (event) =>
+
+  console.log(`You pressed the ${event.key} character`)
+
+);
+
+You pressed the Shift character
+
+You pressed the Control character
+
+You pressed the Enter character
+
+You pressed the Alt character
+
+You pressed the   character // this is space bar
+
+ 
+
+shiftKey, ctrlKey, altKey, metaKey(Mac cmd) can be monitored to see if held down. Return true if held down.
+
+addEventListener("keydown", (event) => {
+
+  if (event.key === "c" && event.ctrlKey) {
+
+    console.log("Action canceled!");
+
+  }
+
+});
+
+Action canceled!    //worked fine when holding ctrl and pressing c.
+
+ 
+
+addEventListener("click", (event) => {
+
+  if (event.shiftKey) {
+
+    console.log("A Shifty Click!");
+
+  }
+
+});
+
+A Shifty Click!  //worked when holding shift and clicking mouse
+
+ 
+
+Touch Events: used on touch screens, smart phones, trackpads, and satellite navigators. Always support mouse events as well as touch events so non-touch devices are supported.
+
+Touchstart event CAUTION: fires when user touches screen but they may have other intention like zoom or swipe. Click even is much safer. Also fires when screen touched but has a built in delay (more of a screen tap).
+
+Page 272-273: touchstart, touchmove, touchenter, touchleave, touchcancel. There is no swipe event in JS yet. Have to use a combination of touchstart, touchmove, and touchleave.
+
+Touch events are complex and difficult to implement.
+
+ 
+
+Touch Event Properties: many properties are logged with touch events see page 273.
+
+ 
+
+Removing Event Listeners: note:anonymous functions as an argument to addEventListener() should not be used because there needs to be a reference to the same function name in the arguments of removeEventLestener().
+
+ 
+
+Added this to event.html: <p id='once'>A One Time Thing...</p>
+
+ 
+
+const onceParagraph = document.getElementById("once");
+
+onceParagraph.addEventListener("click", remove);
+
+function remove(event) {
+
+  console.log("Enjoy this while it lasts!");
+
+  onceParagraph.style.backgroundColor = "pink";
+
+  onceParagraph.removeEventListener("click", remove);
+
+}
+
+Enjoy this while it lasts!  //turned pink when clicked then did nothing on further clicks as eventListener was removed.
+
+ 
+
+Stopping Default Behavior: preventDefault() is a method of the event object that can ve used inside the callback function to stop the default behavior happening.
+
+CAUTION: Users expect certain behaviors and may cause confusion of you change default behavior.
+
+ 
+
+Added this to event.html: <p><a id="broken" href="https://sitepoint.com">Broken Link</a></p>
+
+ 
+
+const brokenLink = document.getElementById("broken");
+
+brokenLink.addEventListener("click", (event) => {
+
+  event.preventDefault();
+
+  console.log("Broken Link!");
+
+});
+
+Broken Link!  Message was sent to console and link did not execute when clicked.
+
+ 
+
+Event Propagation (order of events): by clicking an element you are actually clicking on all the elements it is nested inside of. Two types of event propagation, bubbling(upward to root) and capturing(from root downward). Default is bubbling
+
+ 
+
+Added this to event.html:
+
+<ul id='list'>
+
+<li>one</li>
+
+<li>two</li>
+
+<li>three</li>
+
+</ul>
+
+ 
+
+ulElement = document.getElementById("list");
+
+liElement = document.querySelector("#list li");
+
+ulElement.addEventListener("click", (event) => console.log("Clicked on ul"));
+
+liElement.addEventListener("click", (event) => console.log("Clicked on li"));
+
+ 
+
+Clicked on first li and got this result: bubbling
+
+Clicked on li
+
+Clicked on ul
+
+ 
+
+No eventListener attached to second li. This is what happened when clicked:
+
+Clicked on ul
+
+ 
+
+addEventListener() method has a third parameter, a Boolean value, that specifies whether capturing used or not (default is false)
+
+ 
+
+ulElement.addEventListener(
+
+  "click",
+
+  (event) => console.log("Clicked on ul"),
+
+  true
+
+);
+
+liElement.addEventListener(
+
+  "click",
+
+  (event) => console.log("Clicked on li"),
+
+  true
+
+);
+
+Cliked on first li and got this result showing Capturing:
+
+Clicked on ul
+
+Clicked on li
+
+ 
+
+Stopping the Bubble Phase: stopPropagation() method stops propagation of event. CAUTION: Using this may stop other listeners up the chain from firing.
+
+This code will stop propagation as third argument is false.
+
+liElement.addEventListener('click', (event) => {
+
+console.log('clicked on li');
+
+event.stopPropagation(); }, false);
+
+ 
+
+Event Delegation: can attach event listener to a parent element in order to capture events triggered by its child elements. If you wanted li elements to be highlighted when clicked you could attach the trigger to the parent or the ul element and delegate it.
+
+ 
+
+ulElement.addEventListener("click", highlight); //event delegation. ul will call highligt when li clicked
+
+Result: red highlight toggled when li element clicked on page.
+  -->

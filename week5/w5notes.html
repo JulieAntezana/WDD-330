@@ -1,0 +1,245 @@
+<!-- Week 5
+
+CHAPTER 10
+
+TESTING and DEBUGGING
+
+Errors, Exceptions, and Warnings
+
+Programmer errors are our responsibility, so we must ensure they are minimized as much as possible and fixed promptly. We also should try to limit user errors by predicting any possible interactions that may throw an error, and ensure they are dealt with in a way that doesn’t negatively affect the user experience.
+
+ 
+
+Exceptions: An exception is an error that produces a return value that can then be used by the program to deal with the error.
+
+ 
+
+Stack Traces: An exception will also produce a stack trace.  This is a sequence of functions or method calls that lead to the point where the error occurred. It’s often not just a
+
+single function or method call that causes an error. A stack trace will work backwards from the point at which the error occurred to identify the original function or method that started the sequence.
+
+ 
+
+Warnings: occurs when an error in the code exists that isn’t bad enough to cause a crash.
+
+ 
+
+Strict Mode: produces more exceptions and warnings and prohibits the use of some deprecated features.
+
+Add it to the first line of a JS file:
+
+‘use strict’;
+
+ 
+
+Linting Tools: Linting tools such as JS Lint,1 JS Hint,2 and ES Lint3 can be used to test the quality of JavaScript code, beyond simply using strict mode. They are designed to highlight any sloppy programming practices or syntax errors, and will complain if certain style conventions are not followed, such as how code is indented.
+
+ 
+
+Feature Detection: The recommended way to determine browser support for a feature is to use feature detection. This is done using an if statement to check whether an object or method exists before trying to actually call the method. For example, say we want to use the shiny new holoDeck API (as far as I know, this doesn’t actually exist ... yet), we would wrap any method calls inside the following if block:
+
+if (window.holoDeck) {
+
+virtualReality.activate();
+
+}
+
+Will not even run if object does not exist, otherwise an error would have been thrown.
+
+ 
+
+Debugging in the Browser
+
+Alert: The most basic form of debugging is to use the alert() method to show a dialog at certain points in the code. Because alert() stops a program from running until OK is clicked, it allows us to effectively put breakpoints in the code that let us check the value of variables at that point to see if they’re what we expect them to be.
+
+ 
+
+Using the Console: console.log() very helpful. Console.trace() logs an interactive stack trace in the console.
+
+ 
+
+Debugging Tools: Most modern browsers also have a debugging tool that allows you to set breakpoints in your code that will pause it at certain points. You can then see the values of all the variables at those points and modify them. This can be very useful when trying to track down bugs.
+
+One of the most useful commands is the debugger keyword. This will create a breakpoint in your code that will pause the execution of the code and allow you to see where the program is currently up to.
+
+See example:
+
+function amIOldEnough(age){
+
+debugger;  //remove this later
+
+if (age < 12) {
+
+debugger;
+
+return 'No, sorry.';
+
+} else if (age < 18) {
+
+debugger;
+
+return 'Only if you are accompanied by an adult.';
+
+} else {
+
+debugger;
+
+return 'Yep, come on in!';
+
+}
+
+}
+
+ 
+
+Error Objects: An error object can be created by the host environment when an exception occurs, or it can be created in the code using a constructor function, like so:
+
+const error = new Error();
+
+This constructor function takes a parameter that’s used as the error message:
+
+const error = new Error('Oops, something went wrong');
+
+Some error objects are created automatically. We can access the name, message, and stack properties of error objects.
+
+ 
+
+Throwing Exceptions: Can throw your own exceptions using the
+
+throw statement. This will allow for any problems in your code to be highlighted and dealt with, rather than lurk quietly in the background. It is best practice to throw an error object. This can then be caught in a catch block, which is covered later in the chapter:
+
+throw new Error('Something has gone badly wrong!');
+
+ 
+
+Example of throw inside a function. Cannot find square root of negative number so throw and exception:
+
+function squareRoot(number) {
+
+'use strict';
+
+if (number < 0) {
+
+throw new RangeError('You cannot find the square root of
+
+negative numbers')
+
+}
+
+return Math.sqrt(number);
+
+};
+
+ 
+
+Exception Handling: It is possible to handle exceptions gracefully by catching the error. Any errors can be hidden from users, but still identified. We can then deal with the error appropriately ― perhaps even ignore it ― and keep the program running.
+
+Try, Catch, Finally blocks are used to try and catch exceptions and finally block runs after catch block regardless of whether an exception occurred.
+
+function imaginarySquareRoot(number) {
+
+'use strict';
+
+let answer;
+
+try {
+
+answer = String(squareRoot(number));
+
+} catch(error) {
+
+answer = squareRoot(-number)+"i";
+
+} finally {
+
+return `+ or - ${answer}`;
+
+}
+
+}
+
+ 
+
+Tests: Testing is an important part of programming that can often be overlooked. Writing good tests means your code will be less brittle as it develops, and any errors will be identified early on. A test can simply be a function that tests a piece of code runs as it should. For example, we could test that the squareRoot() function that we wrote earlier
+
+returns the correct answer with the following function:
+
+function itSquareRoots4() {
+
+return squareRoot(4) === 2;
+
+}
+
+Here we’re comparing the result of squareRoot(4) with the number 2. This will return true if our function works as expected, which it does:
+
+itSquareRoots4();
+
+<< true
+
+ 
+
+Test-driven Development: TDD is the process of writing tests before any actual code. Obviously these tests will initially fail, because there is no code to test. The next step is to write some code to make the tests pass. After this, the code is refactored to make it faster, more readable, and remove any repetition. The code is continually tested at each stage to make sure it continues to work. This process should be followed in small piecemeal chunks every time a new feature is
+
+Implemented.
+
+ 
+
+Testing Frameworks: provide a structure to write meaningful tests and then run them. There are a large number of frameworks available for JavaScript, but we’ll be focusing on the Jest framework.
+
+Jest, created by Facebook, is very popular. (see page369 for installation instructions using npm install -g jest, jest -v)
+
+Usage:  Should be placed in separate js file like squareRoot.test.js (Jest looks for files named this way)
+
+function squareRoot(number) {
+
+'use strict';
+
+if (number < 0) {
+
+throw new RangeError("You can't find the square root of
+
+negative numbers")
+
+}
+
+return Math.sqrt(number);
+
+};
+
+test('square root of 4 is 2', () => {
+
+expect(squareRoot(4)).toBe(2);
+
+});
+
+ 
+
+The test would be executed by Jest using the following inside the directory where the .test.js file is:
+
+Jest -c {}
+
+ 
+
+The first parameter of the test() function is a string that
+
+describes what we are testing, in this case that ‘square root of 4 is 2’. The second parameter is an anonymous function that contains a function called expect(), which takes the function we’re testing as an argument, and returns an expectation
+
+object. The expectation object has a number of methods called matchers. In the example above, the matcher is toBe(), which tests to see if the value returned by our squareRoot() function is the same as the value provided as an argument (2,
+
+in this case). These matchers are named so they read like an English sentence, making them easier to understand (even for non-programmers), and the feedback they provide more meaningful.
+
+ 
+
+Result of jest test should look something like:
+
+<< PASS ./squareRoot.test.js
+
+✓ square root of 4 is 2 (2ms)
+
+Test Suites: 1 passed, 1 total
+
+Tests: 1 passed, 1 total
+
+Snapshots: 0 total
+
+Time: 2.996s -->

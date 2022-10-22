@@ -19,7 +19,7 @@ function renderList(list, element, toDos, hidden) {
     let cb = null;
     let btn = null;
 
-    if(hidden && toDo.completed) {
+    if(hidden && toDo.done) {
       item.innerHTML = `<label><input type="checkbox" checked><strike> ${toDo.content}</strik></label><button>X</button>`;
     }
     else {
@@ -61,7 +61,7 @@ function addToDo(value, key) {
   const newToDo = {
     id: new Date(),
     content: value,
-    completed: false
+    done: false
   };
 
   liveToDos.push(newToDo);
@@ -76,11 +76,11 @@ function deleteToDo(key) {
 
 // this would be done last if you still have time...and if you haven't blown too many minds.
 
-function filterToDos(key, completed = true) {
+function filterToDos(key, done = true) {
   let toDos = getToDos(key);
 
-  // return a list of either completed or not completed toDos based on the parameter.
-  return toDos.filter(item => item.completed === hidden);
+  // return a list of either done or not done toDos based on the parameter.
+  return toDos.filter(item => item.done === hidden);
 }
 
 // public
@@ -100,9 +100,9 @@ export default class ToDos {
   }
 
   newToDo() {
-    const task = document.getElementById("todoInput");
-    addToDo(task.value, this.key);
-    task.value = "";
+    const toDo = document.getElementById("todoInput");
+    addToDo(toDo.value, this.key);
+    toDo.value = "";
     this.listToDos();
   }
 
@@ -118,7 +118,7 @@ export default class ToDos {
     let toDo = this.findTodo(id);
 
     if(toDo) {
-      toDo.completed = !toDo.completed;
+      toDo.done = !toDo.done;
       writeToLS(this.key, liveToDos);
       renderList(liveToDos, this.listElement, this, true);
     }

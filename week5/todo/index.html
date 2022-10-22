@@ -10,10 +10,32 @@
 </head>
 <body>
   <h1>WDD 330 Portfolio</h1>
-  <h2>ToDo</h2>
-  <ul id="todoList"></ul>
-  <input type="text" id="todoInput" placeholder="Enter your task" />
-  <button id="addToDo">Add</button>
+
+  <!-- <ul id="todoList"></ul>
+  <input type="text" id="todoInput" placeholder="Enter your toDo" />
+  <button id="addToDo">Add</button> -->
+  <div id="page">
+    <h1>ToDo</h1>
+    <div id="toDoContainer" class="max-width">
+  
+        <ul id="toDoList" class="max-width" >
+
+        </ul>
+
+      <div id="filter" class="max-width">
+        <ul>
+          <li id="numToDosLeft">X Tasks Left</li>
+          <li id="all" class="active">All</li>
+          <li id="active">Doing</li>
+          <li id="done">Done</li>
+        </ul>
+      </div>
+    </div>
+    <h2>Create a new toDo here</h2>
+    <div id="newToDoContainer" class="max-width">
+      <input type="text" id="newToDoInput" placeholder="Enter your new toDo"/>
+      <button type="button" id="addNewToDo">+</button>
+    </div>
   
 </body>
 <!-- <script src="./js/index.js" type="module"></script> -->

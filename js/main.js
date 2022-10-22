@@ -23,6 +23,11 @@ var weeklist = [
     label: 'Week 5',
     url: "./week5/week5.html"
   }
+  ,
+  {
+    label: 'Week 6',
+    url: "./week6/week6.html"
+  }
 ];
 listWeeklyItems(weeklist,"weekList");
 

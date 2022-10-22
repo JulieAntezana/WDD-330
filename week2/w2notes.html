@@ -1,0 +1,1566 @@
+<!-- Week2 Reading Assignment - Novice to Ninja book chapters 2 through 4.
+
+Ch2: Programming basics:
+
+A good review since I have not used JS for a while. Line comments begin with //. Block comments /*……*/. JS statements end with either a new line or a semicolon. There was much discussion about how semicolons are often not required but it stands as a good practice to use them. JS uses Automatic Semicolon Insertion (ASI). JS is known as a C-style syntax because of its similarities with C programming language. A block is a series of statements contained inside curly braces. Block do not need to be terminated by a semicolon. Use as much whitespace needed to make code understandable/readable. Avoid the reserved words found on page 34.
+
+ 
+
+Primitive Data Types: (Primitives stored by a value)
+
+String
+
+Symbol
+
+Number
+
+Boolean
+
+Undefined
+
+Null
+
+Non-primitive Data Type is an object: (Stored by reference)
+
+Arrays
+
+Functions
+
+Object literals
+
+Data types do not have to be declared in JS at time of declaration
+
+ 
+
+typeof operator can report type of a value
+
+> typeof 'hello'
+
+'string'
+
+typeof { ninja: 'turtle' }
+
+<< 'object'
+
+typeof [ 1, 2, 3 ]
+
+<< 'object' (Interesting that both were reported as just object – not as array etc.)
+
+ 
+
+Variables: value stored in memory
+
+Must be declared. Can be declared on same line separated by commas.
+
+let x = 3, y = 4, z = 5;
+
+ 
+
+Const – constant, will not be reassigned if used as a primitive data type
+
+Const variable can be reassigned if associated with a non-primitive data type like an array
+
+Example:
+
+> const name = {value: 'Marc'}
+
+> name.value = 'Jacki';
+
+'Jacki'
+
+> name
+
+{ value: 'Jacki' }  Though name was a const it was changed because of being associated with a non-primitive data type. Although const will prevent reassignment to another object.
+
+Use const to assign most variables, makes programs more predictable and helps avoids bugs.
+
+ 
+
+Let – can be reassigned later in program     let score = 0;
+
+Can update a mutable variable using equal sign=> score = 5;
+
+SCOPE: Const and let have block scope so their value only exists inside the block in which they were declared.
+
+ 
+
+Var – prior to ES6. Works similar to let. Used frequently in older code. Sounds like var has global scope.
+
+ 
+
+Scope: determines where a variable is accessible in a program
+
+Global scope: A variable declared outside of a block has global scope, accessible everywhere in the program. Be cautious with this practice. Keep global to a minimum.
+
+Local scope: Blocks can be used to create local scope. Declared with let or const inside a block make them available only inside that block.
+
+ 
+
+Example: scope outside a block and inside a block
+
+> const a = '1';
+
+> a
+
+'1'
+
+> {const a = 3; a;}
+
+3
+
+> a
+
+'1'        value of ‘a’ was 3 inside the block. 1 outside block. Same name two values – caution
+
+ 
+
+Example: global scope outside block overwritten inside block changes global variable too
+
+> let b = 2;
+
+> b
+
+2
+
+> {b=4; b;}   //did not use let
+
+4
+
+> b
+
+4
+
+Example: Global variable created inside block without using const or let. Accessible outside the block.
+
+> {c=5; c;}
+
+5
+
+> c
+
+5
+
+Example: local variable created with const inside block. Not accessible outside block
+
+> {const d = 6; d;}
+
+6
+
+> d
+
+Uncaught ReferenceError: d is not defined
+
+ 
+
+Example: const value unchanged while let value changed
+
+> const a = 1;
+
+> a
+
+1
+
+> let b = a;
+
+> b
+
+1
+
+> b = 2;
+
+2
+
+> a
+
+1
+
+> a = 5;
+
+Uncaught TypeError: Assignment to constant variable.
+
+ 
+
+Example: changing the value property of d changes it for c as well because c and d reference the same object.
+
+> const c = {value: 1};
+
+> c
+
+{ value: 1 }
+
+> let d = c;
+
+> d
+
+{ value: 1 }
+
+> d.value = 2;
+
+2
+
+> d
+
+{ value: 2 }
+
+> c
+
+{ value: 2 }
+
+ 
+
+ 
+
+ 
+
+Variable names can start with $ or _ but this should be avoided when possible because _ can refer to private properties and $ is used by jQuery library.
+
+ 
+
+Strings: Best to use literals
+
+‘hello’  //literal
+
+new String(“hello”) //object
+
+Be aware some characters must be escaped to work properly. Backslash \ is the method for escaping characters.
+
+ 
+
+Properties are information about an object or value.
+
+Methods perform an action on the object or value.
+
+Some string properties:
+
+Example:
+
+> const name = 'Marc';
+
+> name
+
+'Marc'
+
+> name.length     //dot notation is most common
+
+4
+
+> name['length'] //alternative way of getting to length property
+
+4
+
+ 
+
+String methods:
+
+> name.toUpperCase()
+
+'MARC'
+
+> name.toLowerCase()
+
+'marc'
+
+> name.charAt(3); //0, 1, 2, 3
+
+'c'
+
+> name.indexOf('r');
+
+2
+
+> name.indexOf('x'); //returns -1 if does not exist
+
+-1
+
+Others:
+
+.lastIndexOf()
+
+.includes()
+
+.startsWith()
+
+.endsWith()
+
+.concat() method used to concatenate two or more strings together
+
+> 'JavaScript' .concat(' Ninja')
+
+'JavaScript Ninja'
+
+ 
+
+Concat shortcut is to use + operator
+
+> 'Marc' + ' ' + 'Williamson'
+
+'Marc Williamson'
+
+ 
+
+.trim() method removes any whitespace from beginning and end of a string. It also removes escaped tabs and returns.
+
+> '        Clean it up     '.trim();
+
+'Clean it up'
+
+ 
+
+.repeat() method will repeat a string x times
+
+> 'Sheep are cool '.repeat(4);
+
+'Sheep are cool Sheep are cool Sheep are cool Sheep are cool '
+
+ 
+
+TEMPLATE LITERALS – love this…. USE THIS
+
+Uses the backtick character ` and variable set off with ${}
+
+> const name = 'Marc';
+
+> `Hello ${name}!`;
+
+'Hello Marc!'
+
+ 
+
+Symbols: do not have a literal form must be created with Symbol() function. The uniqueness of symbols make it impossible for the names of any properties to clash with each other if they are symbols.
+
+This came from page 54 and I am not really following it yet. Need to dive deeper into this.
+
+> const uniqueID = Symbol('this is a unique ID');
+
+> typeof uniqueID
+
+'symbol'
+
+> console.log(uniqueID)
+
+Symbol(this is a unique ID)
+
+> String(uniqueID)
+
+'Symbol(this is a unique ID)'
+
+ 
+
+Possible for two variables to point to the same symbol if the for for() method is used when creating the symbol:
+
+> const A = Symbol.for('shared symbol');
+
+> const B = Symbol.for('shared symbol');
+
+> A
+
+Symbol(shared symbol)
+
+> B
+
+Symbol(shared symbol)
+
+ 
+
+Numbers:
+
+Can be integers
+
+Floating point numbers (decimals or floats)
+
+typeOf returns ‘number’ for both types
+
+So you can test if it is an int with
+
+> Number.isInteger(9)
+
+True
+
+Octal and Hexadecimal numbers:
+
+OxAF hex base 16
+
+Oo47 octal base 8
+
+Ob1010 binary literal
+
+Refer to page 57 – I do not really understand this yet.
+
+Exponential notation:
+
+1e6 10 to the power of 6 ( a million)
+
+2E3   2 multiplied by 10^3
+
+2.5e-3   2.5 multiplied by 10 to the power -3   (0.0025)
+
+ 
+
+Number Methods:  various methods are explained on pages 57-59
+
+Arithmetic Operations: 59-60
+
+ 
+
+Changing the value of Variables
+
+Let point = 0;
+
+Points = points + 10;
+
+Points is now 10 … points +=10; now is 20
+
+Points -=5;  now is 15
+
+Points *=2;   now is 30
+
+Points /=3;   now is 10
+
+Points %=7;  now is 3 (the remainder after dividing 10/7)
+
+Points ++;  returns orig value then increments by one
+
+++points;   increments orig value by one and returns that value
+
+Points --;
+
+--points;
+
+Infinity is a JS error value if number is too big for JS to deal with. See page 62.
+
+ 
+
+NaN is a JS error for Not a Number
+
+ 
+
+Number.isFinite() method returns true if the value is a number this is not Infinity, -Infinity, or NaN
+
+ 
+
+Type Coercion (pg64): JS will attempt to convert one operand to an equivalent value of the other operand’s type. Does not always work like you may think….
+
+Example:
+
+‘2’ * 8;
+
+<16
+
+ 
+
+Then you have this:
+
+‘2’ + 8;
+
+<’28’
+
+ 
+
+Converting between strings and numbers (pg65 - 66)
+
+Number() method is preferred
+
+Number(‘23’)
+
+<23
+
+ 
+
+Numbers to strings use the String() function (pg66 -67)
+
+String(3);
+
+<’3’
+
+ 
+
+Parsing Numbers: (pg67 – 69)
+
+Convert a string representation of a numerical value back into a number. Can specify the base of the number being converted.
+
+ 
+
+Undefined:
+
+Value given to variables that have not been assigned a value.
+
+ 
+
+Null:
+
+No value. A placeholder that says there should be a value but there isn’t at the moment. Null behaves (coerced) like a zero.
+
+ 
+
+Boolean:
+
+True or false  - see pg 70 for a list of the falsy booles
+
+ 
+
+Logical Operators:
+
+! the logical not
+
+!!  to check for truthy or falsy   see page 71-72
+
+ 
+
+&& logical and (pg72)
+
+Both conditions must be met(true)
+
+ 
+
+|| logical or
+
+One of the conditions must be true
+
+ 
+
+Bitwise Operators (pg74-77)
+
+Bitwise NOT
+
+Bitwise AND
+
+Bitwise OR
+
+Bitwise XOR
+
+Bitwise Shift Operators – never seen this one before (pg 77)
+
+ 
+
+Comparison:
+
+Equality = assignment
+
+Soft Equality ==  JS doesn’t take into account data type which can lead to strange returns
+
+Hard Equality ===  must be of same data type
+
+Inequality != data type doesn’t matter  !== data type matters
+
+< 
+
+<=
+
+> 
+
+>=
+
+ 
+
+ 
+
+Chapter 3     Arrays, Logic, Loops
+
+Array is an ordered list of values. Use square brackets []
+
+Const myArray = []; OR const myArray = new Array(); // array constructor function
+
+Both create an empty array object.
+
+Create array literal example:
+
+> const tools =['saw', 'hammer', 'drill', 'rake'];
+
+> tools
+
+[ 'saw', 'hammer', 'drill', 'rake' ]
+
+> tools[0]
+
+'saw'
+
+> tools[4] ='shovel'
+
+'shovel'
+
+> tools
+
+[ 'saw', 'hammer', 'drill', 'rake', 'shovel' ]
+
+ 
+
+Arrays can hold mixed data types
+
+ 
+
+Can delete value from array but index space remains and becomes undefined
+
+> delete tools[2];
+
+true
+
+> tools
+
+[ 'saw', 'hammer', <1 empty item>, 'rake', 'shovel' ]
+
+> tools[2];
+
+ 
+
+Destructuring an array is the concept of taking values out of an array and presenting them as individual values. This is new to me. Multiple values can be assigned at the same time.
+
+See page 93 – these code examples did not work. Uncaught TypeError: Assignment to constant variable.
+
+ 
+
+> tools.length;
+
+5
+
+To find last item in array must subtract 1 due to index 0
+
+> tools[tools.length-1];
+
+'shovel'
+
+ 
+
+To increase length of array
+
+> tools.length=8;
+
+8
+
+> tools
+
+[ 'saw', 'hammer', <1 empty item>, 'rake', 'shovel', <3 empty items> ]
+
+ 
+
+To decrease length of array (values will be cut off and lost)
+
+tools.length=4;
+
+4
+
+> tools
+
+[ 'saw', 'hammer', <1 empty item>, 'rake' ]
+
+ 
+
+To remove last item use .pop() method
+
+> tools
+
+[ 'saw', 'hammer', 'drill', 'rake' ]
+
+> tools.pop();
+
+'rake'
+
+> tools
+
+[ 'saw', 'hammer', 'drill' ]
+
+ 
+
+To remove first item use .shift() method
+
+> tools.shift();
+
+'saw'
+
+> tools
+
+[ 'hammer', 'drill' ]
+
+ 
+
+To append item to end of array use .push(‘item to push’) method
+
+> tools.push('shovel')
+
+3
+
+> tools
+
+[ 'hammer', 'drill', 'shovel' ]
+
+ 
+
+To append item to beginning of array use .unshift(‘item to add’) method
+
+> tools.unshift('chisel');
+
+4
+
+> tools
+
+[ 'chisel', 'hammer', 'drill', 'shovel' ]
+
+ 
+
+The .concat() method can merge an array with one or more arrays.
+
+See page98 – Code example failed
+
+> tools.concat(['knife','wrench','pliers'])
+
+[
+
+  'chisel', 'hammer',
+
+  'drill',  'shovel',
+
+  'knife',  'wrench',
+
+  'pliers'
+
+]
+
+> tools
+
+[ 'chisel', 'hammer', 'drill', 'shovel' ] //note how it did not change the tools array
+
+> tools=tools.concat(['knife', 'wrench', 'plier']);
+
+Uncaught TypeError: Assignment to constant variable. //Failed when reassignment attempted
+
+ 
+
+See page 97 – the spread operator did not work for me …tools…
+
+ 
+
+The .join() method converts the array into a string of comma separated items
+
+> tools.join();
+
+'chisel,hammer,drill,shovel'
+
+ 
+
+A non-destructive method for slicing out a piece of an array is the .slice(2,4) method
+
+> tools.slice(0,2);
+
+[ 'chisel', 'hammer' ]
+
+> tools
+
+[ 'chisel', 'hammer', 'drill', 'shovel' ] //note how orig array was not altered
+
+ 
+
+Use .splice(#start splice, #items to remove, ‘insert new value’. Returns a sub array of items removed see pg99.
+
+tools.splice(1,1,'screw driver');
+
+[ 'hammer' ]
+
+> tools
+
+[ 'chisel', 'screw driver', 'drill', 'shovel' ]
+
+ 
+
+Can also use .splice() without removing an items A DESTRUCTIVE METHOD – CAUTION - POWERFUL
+
+> tools.splice(3,0,'mallet'); //note the zero indicates #items to be removed
+
+[]
+
+> tools
+
+[ 'chisel', 'screw driver', 'drill', 'mallet', 'shovel' ]
+
+ 
+
+To completely remove an item and its index position use .splice(#index start, #items to be removed) leave values to add empty:
+
+> tools.splice(2,1);
+
+[ 'drill' ]
+
+> tools
+
+[ 'chisel', 'screw driver', 'mallet', 'shovel' ] //the item removed ‘drill’ is returned
+
+ 
+
+To reverse the array order use .reverse() method
+
+> tools
+
+[ 'chisel', 'screw driver', 'mallet', 'shovel' ]
+
+> tools.reverse();
+
+[ 'shovel', 'mallet', 'screw driver', 'chisel' ]
+
+ 
+
+To alphabetically sort use .sort() method  (Caution with numbers they get sorted by first digit first and can mess order up. Way to fix this is in chapter 4.
+
+> tools.sort()
+
+[ 'chisel', 'mallet', 'screw driver', 'shovel' ]
+
+ 
+
+Use .indexOf(‘item’) to get index of first occurrence. Will return -1 if does not exist
+
+Use .includes(‘item’) for Boolean check of item. Can add this… .includes(‘item’,1) to start search at index 1.
+
+ 
+
+Multidimensional Arrays – an array of arrays. To create a coordinate system
+
+> coordinates
+
+[ [ 1, 3 ], [ 4, 2 ] ]
+
+> coordinates [0][0]; //first value of first array
+
+1
+
+> coordinates [1][0]; //first value of second array
+
+4
+
+> coordinates [0][1]; // second value of first array
+
+3
+
+> coordinates [1][1]; // second value of second array
+
+2
+
+ 
+
+SETS
+
+Unique data structure with no duplicates. Good way to keep track of data without having to check for duplicates.
+
+Create empty set
+
+> const list = new Set();
+
+> list
+
+Set(0) {}
+
+ 
+
+> list.add(1);
+
+Set(1) { 1 }
+
+> list.add(2).add(3).add(4);
+
+Set(4) { 1, 2, 3, 4 }
+
+ 
+
+> const numbers = new Set([1,2,3]);
+
+> numbers
+
+Set(3) { 1, 2, 3 }
+
+ 
+
+Using Set() with strings is a bit different
+
+> const letters = new Set('helllllo')
+
+> letters
+
+Set(4) { 'h', 'e', 'l', 'o' }
+
+ 
+
+Must use Set().add for separate words
+
+> const words = new Set().add('the').add('big').add('bad').add('wolf');
+
+> words
+
+Set(4) { 'the', 'big', 'bad', 'wolf' }
+
+ 
+
+Non-primitive values such as arrays, and objects are considered unique values even if they contain the same values. Appears to allow duplicate values in the set but they are not ===
+
+> const arrays = new Set().add([1]).add([1]);
+
+> arrays
+
+Set(2) { [ 1 ], [ 1 ] }
+
+> [1]===[1];
+
+false
+
+ 
+
+Type coercion not used with set. This appears to be a duplicate but is not.
+
+> const mixedTypes = new Set().add(2).add('2');
+
+> mixedTypes
+
+Set(2) { 2, '2' }
+
+ 
+
+Set methods:
+
+.size() returns number of items in set
+
+.has(‘item you are looking for’) returns true or false. This has() methods works much faster than includes() or indexOf() methods for arrays.
+
+Sets do not have index notation so you cannot find value of first item with mySet[0].
+
+.delete(‘item to delete’)
+
+.clear()  removes all values from a set.
+
+A set can be converted to an array using the spread operator inside an array literal. Array.from() can also be used to convert set into array.
+
+Another way is to use the spread operator and new Set() in an array to create a new array with no duplicates (pg108)
+
+ 
+
+Weak sets: weak sets avoid memory leaks by garbage collecting any reference to a “dead object” that’s had its original reference removed. Only non-primitive data types can be used in a weak set (objects, arrays, functions)
+
+> const weak = new WeakSet();
+
+> const myArray = [1,2,3];
+
+> weak.add(myArray);
+
+WeakSet { <items unknown> } //appears as if set is empty but it is not.
+
+> weak.has(myArray);
+
+True
+
+The array can be removed from the set with .delete()
+
+> weak.delete(myArray);
+
+true
+
+> weak.has(myArray);
+
+False
+
+ 
+
+Maps (pg111)
+
+Data structure that keep a list of key and value pairs, similar to “hashes”, “hash tables” or “dictionaries” in other programming languages.
+
+Maps can use any data type as a key. Maps have a size property. Maps are solely focues on the storage and retrieval of key-value pairs.
+
+Must use get() method to retrieve map values. Use .set() method to add items
+
+> const romanNumerals = new Map();
+
+> romanNumerals.set(1,'I');
+
+Map(1) { 1 => 'I' }  // => is referred to as the “hash rocket” symbol
+
+> romanNumerals.set(2,'II').set(3,'III').set(4,'IV').set(5,'V');
+
+Map(5) { 1 => 'I', 2 => 'II', 3 => 'III', 4 => 'IV', 5 => 'V' }
+
+> romanNumerals.get(4); //example using get() method
+
+'IV'
+
+Map can be created with nested arrays
+
+> const heroes = new Map([['Clark Kent','Superman'],['Bruce Wayne','Batman']]);
+
+> heroes
+
+Map(2) { 'Clark Kent' => 'Superman', 'Bruce Wayne' => 'Batman' }
+
+> heroes.size;
+
+2
+
+> heroes.delete('Clark Kent'); //example using .delete()
+
+true
+
+> heroes.size;
+
+1
+
+> heroes.clear();
+
+> heroes.size;
+
+0
+
+Maps (pg114) can be converted into a nested array of key-value pairs using either the spread operator or the Array.from() method.
+
+ 
+
+Weak maps: work the same way as Weak sets…. new WeakMap(), has(), get(), set() and delete()
+
+ 
+
+ 
+
+Logic (pg115)
+
+if (condition or conditions to check for) {
+
+whatever action goes here;
+
+}
+
+ 
+
+Else
+
+if (condition) {
+
+// code to run if condition is true
+
+} else {
+
+// code to run if condition is false
+
+}
+
+ 
+
+Ternary Operator: shorthand for if…else  uses ternary operator “?” (no if or else key words used) first part for true : second part for false
+
+> const n = 5;
+
+> n%2 === 0 ? console.log('n is an even number'):console.log('n is an odd number');
+
+n is an odd number
+
+ 
+
+An even shorter way would be something like this:
+
+> console.log(`n is a ${(n%2 === 0)?'even':'odd'} number`);
+
+n is a odd number
+
+ 
+
+Else if
+
+Can string a bunch of if statements together with else if
+
+ 
+
+Switch statement: can be easier to read than a bunch of else ifs
+
+> const number = 4;
+
+> switch(number) {
+
+... case 4:
+
+... console.log('Number is four');
+
+... break;
+
+... case 5:
+
+... console.log('Number is five');
+
+... break;
+
+... case 6:
+
+... console.log('Number is six');
+
+... break;
+
+... default:
+
+... console.log('Number is less than four');
+
+... break;
+
+}
+
+ 
+
+Loops
+
+While (condition) {
+
+//do something
+
+}
+
+ 
+
+Be cautious of infinite loops
+
+ 
+
+Do while  - executes at least once. Condition comes after the block of code.
+
+do {
+
+//do something
+
+} while(condition)
+
+ 
+
+For loops are most commonly used in JS
+
+For (initialization; condition; after) {do something}
+
+For loops can be nested.
+
+Use for loops to loop through an array pg124
+
+ 
+
+ES6 introduced for-of loop
+
+for(const value of avengers){
+
+console.log(value);
+
+}
+
+Pg125
+
+ 
+
+Looping over sets:     remember sets do not allow duplicates
+
+Const letters = new Set(‘hello’);
+
+> for(const letter of letters) {
+
+... console.log(letter);
+
+... }
+
+h
+
+e
+
+l
+
+o
+
+ 
+
+Looping over Maps pg126
+
+> for(const key of romanNumerals.keys()){   //keys() method
+
+... console.log(key);
+
+... }
+
+1
+
+2
+
+3
+
+4
+
+5
+
+ 
+
+> for(const value of romanNumerals.values()){    //values() method
+
+... console.log(value);
+
+... }
+
+I
+
+II
+
+III
+
+IV
+
+V
+
+ 
+
+> for(const [key,value] of romanNumerals.entries()){  //entries() method
+
+... console.log(`${key} in Roman Numerals is ${value}`);
+
+... }
+
+1 in Roman Numerals is I
+
+2 in Roman Numerals is II
+
+3 in Roman Numerals is III
+
+4 in Roman Numerals is IV
+
+5 in Roman Numerals is V
+
+ 
+
+Weak maps are non-enumerable so it is not possible to loop over them using any of these methods.
+
+ 
+
+ 
+
+Chapter 4 Functions (pg132)
+
+Functions are first-class objects meaning they can be assigned to variables, stored in arrays and can even be returned by other functions.
+
+Function declaration:
+
+> function hello(){
+
+... console.log('Hello Andrew');
+
+... }
+
+> hello()
+
+Hello Andrew
+
+ 
+
+Using function constructor – not recommended to declare functions in the manner
+
+> const hi = new Function('console.log("Hello World");');
+
+> hi()
+
+Hello World
+
+ 
+
+All functions return a value that uses keyword return.
+
+> function howdy(){
+
+... return 'Howdy Yall';
+
+... }
+
+> howdy()
+
+'Howdy Yall'
+
+ 
+
+Function return can be assigned to variable:
+
+> const message = howdy();
+
+> message
+
+'Howdy Yall'
+
+ 
+
+Parameters and Arguments (pg138)
+
+Function parameters are set when function is defined. Can use as many as you like.
+
+Function arguments are set when function is invoked. Number of arguments should match number of parameters. If too few arguments are used things will likely break. If too many arguments are provided the extras are simply ignored.
+
+> function square(x){  //x is the parameter
+
+... return x*x;
+
+... }
+
+> square(4.5);       //4.5 is the argument
+
+20.25
+
+ 
+
+The “arguments variable”: every function has a special variable called arguments. It is an array-like object, has only length property, that contains every argument passed to the function. We can create an arguments function:
+
+> function arguments(){
+
+... return arguments;
+
+... }
+
+> arguments('hello', NaN, 1, 2, 3, 4, 5);
+
+[Arguments] {
+
+  '0': 'hello',
+
+  '1': NaN,
+
+  '2': 1,
+
+  '3': 2,
+
+  '4': 3,
+
+  '5': 4,
+
+  '6': 5
+
+ 
+
+Rest operator: (pg141) creates array of arguments inside of the body of the function.
+
+> function rest(...args){
+
+... for(arg of args){
+
+... console.log(arg);
+
+... }                         //new to me and I do not understand what is going on here
+
+... }
+
+> rest(2,4,6,8);
+
+2
+
+4
+
+6
+
+8
+
+ 
+
+Improved Mean Function   //this is still a bit over my head
+
+> function mean(...values){
+
+... let total = 0;
+
+... for(const value of values){
+
+... total += value;
+
+... }
+
+... return total/values.length;
+
+... }
+
+> mean(2,8,12,11,4,2);
+
+6.5
+
+ 
+
+Default Parameters:  ALWAYS PUT DEFAULT PARAMETERS AFTER ALL OTHER PARAMETERS
+
+> function hello(name='World'){   //this is the default if no argument supplied
+
+... console.log(`Hello ${name}!`);
+
+... }
+
+> hello()
+
+Hello World!
+
+> hello('Universe');  //result when argument supplied
+
+Hello Universe!
+
+ 
+
+Arrow Functions: much more succinct way to declare functions. Always anonymous functions so them must be assigned to a variable to refer to them.
+
+=>
+
+ Parameters come before the arrow
+
+Main body of function comes after arrow
+
+> const square = x => x*x;
+
+> square(5);
+
+25
+
+ 
+
+> const add = (x,y) => x+y;
+
+> add (5,6)
+
+11
+
+ 
+
+Note: if function requires no parameters then empty () must be used
+
+const hello = () => alert(‘Hello World!’);
+
+ 
+
+Function Hoisting:
+Moving all variable and function declarations to the top of the current scope regardless of where they are defined. Functions defined by function declaration are automatically hoisted and can be invoked before they have been defined. Useful as it allows all function declarations to be placed together.
+
+ 
+
+Variable Hoisting: pg147
+
+Variable declarations that use var keyword are automatically moved to the top of the current scope. But variable assignment is not hoisted. Variable hoisting causes much confusion and relies on using var to declare variables. Use const or let at the beginning of a block so hoisting is unnecessary.
+
+ 
+
+Callbacks: pg149
+
+Function can be provided as a parameter to another function. Function that is passed as an argument to another function is a “callback”. An anonymous function can also be used as the callback…looks confusing to me. Simple example below
+
+> function sing(song,callback) {
+
+... console.log(`I'm singing along to ${song}.`);
+
+... callback();
+
+... }
+
+> function dance(){
+
+... console.log('Moving my body to the groove.');
+
+... }
+
+> sing('Let It Go', dance);
+
+I'm singing along to Let It Go.
+
+Moving my body to the groove.
+
+ 
+
+Sorting Arrays With a Callback: pg151
+
+Using the sort() method for numbers in an array does not truly sort them correctly
+
+This can be fixed with a callback function
+
+> function numerically(a,b){   //this is the callback function
+
+... return a-b;
+
+... }
+
+> [1,3,12,5,23,18,7].sort(numerically); //callback used as arg in sort() method
+
+[
+
+   1,  3,  5, 7,
+
+  12, 18, 23
+
+]
+
+ 
+
+Array Iterators:
+
+forEach() method will loop through array and invoke a callback function using each value as an argument. The callback function takes 3 parameters, value in the array, current index, the array that the callback is being called on.
+
+> const colors = ['red','green','blue','yellow','purple'];
+
+> colors.forEach( (color,index) =>
+
+... console.log(`Color at position ${index} is ${color}`) );
+
+Color at position 0 is red
+
+Color at position 1 is green
+
+Color at position 2 is blue
+
+Color at position 3 is yellow
+
+Color at position 4 is purple
+
+ 
+
+map() method returns a new array that replaces each value with the return value of the callback function.
+
+> [1,2,3].map(square);
+
+[ 1, 4, 9 ]
+
+An anonymous function can also be used as a callback.
+
+> [1,2,3].map(x=>x*x);
+
+[ 1, 4, 9 ]
+
+ 
+
+For this example colors was previously set up as an array
+
+> colors.map( (color, index) =>
+
+... `<p> ${color.toUpperCase()}</p>`);
+
+[
+
+  '<p> RED</p>',
+
+  '<p> GREEN</p>',
+
+  '<p> BLUE</p>',
+
+  '<p> YELLOW</p>',
+
+  '<p> PURPLE</p>'
+
+]
+
+ 
+
+reduce() method cumulatively combines each result to return just a single value. Usually takes two parameters: accumulated value thus far, and current value in array
+
+> [1,2,3,4,5].reduce( (accumulated,val) => accumulated + val );
+
+15
+
+ 
+
+filter() method returns new array containing items from orig array that return true from callback. This example returns only the truthy values:
+
+> const truthyArray = [0,1,'0',false,true,'hello'];
+
+> truthyArray.filter(Boolean);
+
+[ 1, '0', true, 'hello' ]
+
+Find falsy values like this:
+
+> truthyArray.filter(x => !x);
+
+[ 0, false ]
+
+ 
+
+Chaining Iterators: iterator functions can be combined to create powerful transformations of data stored in arrays.
+
+Example: calculate sum of squared numbers using map() then chain the reduce() method to add the results together:
+
+> [1,2,3].map(x=>x*x).reduce((acc,x) => acc + x ); //Wow, a lot going on there!
+
+14 -->
