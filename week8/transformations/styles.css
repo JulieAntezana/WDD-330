@@ -1,7 +1,3 @@
-/* main div h1, h3 {
-    padding: 15px;
-} */
-
 body {
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,29 +10,37 @@ h1 {
   padding: 1em;
 }
 
-h2, h3 {
-  padding-left: 10px;
+#shake {
+  background-color: blueviolet;
+  margin: 10%;
+}
+#shake:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
 }
 
-.notes {
-  padding: 15px;
-  transition: transform 2s;
-}
-
-.moveHeaders:hover {
+.translat:hover {
   transform: translate(500px);
 }
 
-#testZone {
+#testZone1 {
   border: solid gray 1px;
-  height: 200px;
+  height: 300px;
+  width: 70%;
+  padding: 1%;
+  margin: 2%;
+}
+
+#testZone2 {
+  border: solid gray 1px;
+  height: 225px;
   width: 80%;
   display: flex;
   padding: 1%;
   margin: 2%;
 }
 
-.pink, .blue, .green, .purple {
+.pink, .blue, .green, .purple, .brown {
   height: 20%;
   width: 20%;
   border: solid gray 1px;
@@ -44,7 +48,7 @@ h2, h3 {
 }
 
 .pink {
-  background-color: pink;
+  background-color: rgb(240, 45, 126);
 }
 
 .pink:hover {
@@ -57,7 +61,7 @@ h2, h3 {
 }
 
 .blue:hover {
-  transform: scale(1.5, 0.25) skew(15deg);
+  transform: scale(3, 0.75) skew(15deg);
 }
 
 .green {
@@ -73,10 +77,220 @@ h2, h3 {
 }
 
 .purple:hover {
+  transform: scale(3, 3);
+}
+
+.brown {
+  background-color: rgba(78, 8, 8, 0.911);
+}
+
+.brown:hover {
   transform: scale(3, 3) rotate(1000deg);
 }
 
-.myCanvas {
-  border: dotted 1px white;
-  margin: 10px;
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+div {
+  margin: 0;
+  text-align: center;
+  color: bisque;
+  padding-top: 20px;
+  width: 150px;
+  height: 100px;
+  background: rgb(65, 64, 129);
+  transition: width 1s, height 1s, transform 2s;
+  border-radius: 10px;
+}
+
+.example:hover {
+  width: 500px;
+  height: 500px;
+  background-image: linear-gradient(rgb(63, 43, 153), rgb(252, 252, 252));
+  transform: rotate(180deg);
+}
+
+.example {
+  width: 200px;
+  height: 50px;
+  background-color: red;
+  position: relative;
+  animation-name: example;
+  animation-duration: 25s;
+  animation-direction: alternate;
+}
+
+@keyframes example {
+  0% {
+      background-color: red;
+      left: 0px;
+      top: 0px;
+  }
+
+  25% {
+      background-color: orange;
+      left: 400px;
+      top: 0px;
+  }
+
+  50% {
+      background-color: blue;
+      left: 200px;
+      top: 200px;
+  }
+
+  75% {
+      background-color: green;
+      left: 0px;
+      top: 200px;
+  }
+
+  100% {
+      background-color: red;
+      left: 0px;
+      top: 0px;
+  }
+}
+
+
+#div1 {
+  width: 100px;
+  height: 50px;
+  background-color: red;
+  font-weight: bold;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+#div2 {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(98, 0, 255);
+  font-weight: bold;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+#div3 {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(221, 138, 42);
+  font-weight: bold;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+#div4 {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(50, 231, 201);
+  font-weight: bold;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+#div5 {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(20, 8, 54);
+  font-weight: bold;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+#div1 {
+  animation-timing-function: linear;
+}
+
+#div2 {
+  animation-timing-function: ease;
+}
+
+#div3 {
+  animation-timing-function: ease-in;
+}
+
+#div4 {
+  animation-timing-function: ease-out;
+}
+
+#div5 {
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes mymove {
+  from {
+      left: 0px;
+  }
+
+  to {
+      left: 200px;
+  }
+}
+
+div.cursor {
+  all: revert;
+  background-color: rgb(221, 138, 42);
+  text-align: center;
+  border-radius: 10px;
+  margin: auto;
+  width: 70%;
+}
+
+/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+  background-color: transparent;
+  width: 200px;
+  height: 150px;
+  perspective: 1000px;  
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side*/
+.flip-box-front {
+  background-color: darkslateblue;
+  color: white;
+}
+
+/* Style the back side */
+.flip-box-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
