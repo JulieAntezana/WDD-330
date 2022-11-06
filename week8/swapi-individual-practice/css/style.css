@@ -1,0 +1,185 @@
+html {
+  height: 100%;
+  background-color:rgb(12, 12, 31);
+  /* background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
+  overflow: hidden;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato";
+  background-image: url("https://cssanimation.rocks/demo/starwars/images/bg.jpg");
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:rgb(12, 12, 31); 
+}
+
+h1 {
+  color: white;
+  background-color: darkslateblue;
+  padding: 1em;
+}
+
+h2, h3 {
+  padding-left: 10px;
+}
+
+.swlist {
+  font-size: 100rem;
+}
+
+#title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: #fff;
+  text-align: center;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  letter-spacing: 10px;
+  margin-top: -60px;
+  padding-left: 10px;
+}
+/* Styles added */
+html {
+  --yellow: #f7e11a;
+  color: var(--yellow);
+}
+#cards {
+  display: grid;
+  margin-bottom: 10px;
+  gap: 1rem;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.accordion {
+  background-color: #f2bc1b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 0.75em;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  width: -webkit-fill-available;
+  text-align: left;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.accordion .active,
+.accordion:hover {
+  background-color: rgb(114, 114, 114);
+}
+
+.accordion:after {
+  content: "\002B";
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.accordion .active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+summary {
+  font-size: 1.5rem;
+}
+
+#pages {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+button {
+  border: 1px solid var(--yellow);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--yellow);
+  padding: 0.3rem 0.6rem;
+}
+
+button:hover {
+  background-color: var(--yellow);
+  color: black;
+}
+
+header h1 {
+  text-align: center;
+  font-family: "Metal Mania";
+  text-shadow: 2px 2px 8px #FFF200;
+}
+
+@keyframes star {
+  0% {
+      opacity: 0;
+      transform: scale(1.5) translateY(-0.75em);
+  }
+
+  20% {
+      opacity: 1;
+  }
+
+  89% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+@keyframes wars {
+  0% {
+      opacity: 0;
+      transform: scale(1.5) translateY(-0.75em);
+  }
+
+  20% {
+      opacity: 1;
+  }
+
+  89% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+.star {
+  animation: star 8s ease-out;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.wars {
+  animation: wars 8s ease-out;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.starwars {
+  perspective: 800px;
+  transform-style: preserve3d;
+  background-image: url("https://cssanimation.rocks/demo/starwars/images/bg.jpg")
+}
+
+main {
+  flex-grow: 1;
+  position: relative;
+}
