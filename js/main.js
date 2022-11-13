@@ -34,6 +34,10 @@ var weeklist = [
   {
     label: 'Week 8',
     url: "./week8/week8.html"
+  },
+  {
+    label: 'Week 9',
+    url: "./week9/week9.html"
   }
 ];
 listWeeklyItems(weeklist,"weekList");

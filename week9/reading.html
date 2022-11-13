@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js"></script>
+</head>
+<body>
+  <h1>WDD 330 Portfolio</h1>
+
+  <main>
+    <ul>
+      <h2>Week 09 Exercises</h2>
+      <h3>Window Object (BOM)</h3>
+        <p>A set of properties and information on the computer screen that can be manipulated.</p> 
+
+      <li>
+        <h4>Window Methods:</h4>
+        <li style="margin-left:2em">
+          <p>
+          The scrollTo() method allows you to have the page take you to a specified destination on the window.
+          </p>
+          <p>
+          Click <button onclick="scrollBottom()">HERE</button> to jump to the bottom of the page.
+          </p>
+        </li>
+        <li style="margin-left:2em">
+          <p>
+          Window dialogs, such as the alert() method displays a box with a message and an ok or cancel button.
+          </p>
+          <p>
+          Click <button onclick="sendAlert()">HERE</button> to see an alert.
+          </p>
+        </li>
+        <li style="margin-left:2em"> The setTimeout function can be set to create a timer:                 
+            <p>
+              Click <button onclick="timerAlert()">HERE</button> to start a 3 second timer.
+            </p>
+        </li>
+        <li>
+          <h3>Controlling Windows</h3>
+          <li style="margin-left:2em">
+            <p>A new window can be opened using the window.open() method.</p>
+            <p>
+              Click <button onclick="openWindow()">HERE</button> to open a window.
+            </p>
+          </li>
+          <li style="margin-left:2em">
+            <p>
+              The close() method can be used to close a window.
+            </p>
+            <p>
+              Click <button onclick="closeWindow()">HERE</button> to close the window.
+            </p>
+          </li>
+        </li>
+      </li>
+      <h3>HTML5 API</h3>
+      <li>
+        The data- attribute embeds data.
+      </li>
+      <li>
+        LocalStorage allows you to locally store
+        information or data input by user or by the computer.
+      </li>
+      <li>
+        Geolocation is a way to get current position, although the user has to approve this action by clicking and allowing the browser to collect that data.
+      </li>
+      <li>
+        <h4>Websocket Example:</h4>
+        <form>
+            <label for='message'>Enter a Message:</label>
+            <input type='text' name='message'>
+            <button type='submit'>Submit</button>
+        </form>
+        <div id='output'></div>
+      </li>
+    </ul>
+  </main>
+    <p id="scrollToMessage">Go back to the top of the page. Click <button onclick="scrollBack()">HERE</button></p>
+  <script src='main.js'></script>
+
+</body>
+</html>
