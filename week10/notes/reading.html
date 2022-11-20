@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+<link rel="stylesheet" href="week10.css">
+    <title>Week 10 Stuff</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h2>Week 10 Stuff</h2>
+            <a href="../week10.html">Back to Index</a>
+        </nav>
+        <hr>
+    </header>
+<form ><div></div>
+    <label for="choose">Would you prefer a banana or cherry? (required)</label>
+    <input id="choose" name="i_like" required pattern="[Bb]anana|[Cc]herry" minlength="6" maxlength="6">
+</div>
+    <div>
+        <label for="number">How many would you like?</label>
+        <input type="number" id="number" name="amount" value="1" min="1" max="10">
+      </div>
+      <div>
+        <button>Submit</button>
+      </div> 
+</form>
+<div id="notesSection">
+<p>
+    required: Specifies whether a form field needs to be filled in before the form can be submitted. <br>
+minlength and maxlength: Specifies the minimum and maximum length of textual data (strings) <br>
+min and max: Specifies the minimum and maximum values of numerical input types <br>
+type: Specifies whether the data needs to be a number, an email address, or some other specific preset type. <br>
+pattern: Specifies a regular expression that defines a pattern the entered data needs to follow. <br>
+</p>
+</div>
+<form id="register" method="post">
+    <header>
+    <h1>Sign Me Up!</h1>
+    <p>I would like to receive your fine publication.</p>
+    </header>
+    <ul>
+    <li>
+        <label for="register-name">My name is:</label>
+        <input type="text" id="register-name" name="name">
+    </li>
+    <li>
+        <label for="address">My email address is:</label>
+        <input type="text" id="address" name="address">
+    </li>
+    <li>
+        <label for="url">My website is located at:</label>
+        <input type="text" id="url" name="url">
+    </li>
+    <li> 
+        <label for="password">I would like my password to be:</label>
+        <p>(at least 6 characters, no spaces)</p>
+        <input type="password" id="password" name="password">
+    </li>
+    <li>
+        <label for="rating">On a scale of 1 to 10, my knowledge of 
+↵HTML5 is:</label>
+        <input type="text" name="rating" id="rating">
+    </li>
+    <li>
+        <label for="startdate">Please start my subscription on:
+↵</label>
+        <input type="text" id="startdate" name="startdate">
+    </li>
+    <li>
+        <label for="quantity">I would like to receive <input 
+↵type="text" name="quantity" id="quantity"> copies of <cite>
+↵The HTML5 Herald</cite>.</label>
+    </li>
+    <li>
+        <label for="upsell">Also sign me up for <cite>The CSS3 
+↵Chronicle</cite></label>
+        <input type="checkbox" id="upsell" name="upsell" value="CSS 
+↵Chronicle">
+    </li>
+    <li>
+        <input type="submit" id="register-submit" value="Send Post 
+↵Haste">
+    </li>
+    </ul>
+</form>
+<form id="example">
+    <p>
+      <fieldset>
+        <legend>Do you have a driver's license?<abbr title="This field is mandatory" aria-label="required">*</abbr></legend>
+        <!-- While only one radio button in a same-named group can be selected at a time,
+             and therefore only one radio button in a same-named group having the "required"
+             attribute suffices in making a selection a requirement -->
+        <input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Yes</label>
+        <input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
+      </fieldset>
+    </p>
+    <p>
+      <label for="n1">How old are you?</label>
+      <!-- The pattern attribute can act as a fallback for browsers which
+           don't implement the number input type but support the pattern attribute.
+           Please note that browsers that support the pattern attribute will make it
+           fail silently when used with a number field.
+           Its usage here acts only as a fallback -->
+      <input type="number" min="12" max="120" step="1" id="n1" name="age"
+             pattern="\d+">
+    </p>
+    <p>
+      <label for="t1">What's your favorite fruit?<abbr title="This field is mandatory" aria-label="required">*</abbr></label>
+      <input type="text" id="t1" name="fruit" list="l1" required
+             pattern="[Bb]anana|[Cc]herry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range">
+      <datalist id="l1">
+        <option>Banana</option>
+        <option>Cherry</option>
+        <option>Apple</option>
+        <option>Strawberry</option>
+        <option>Lemon</option>
+        <option>Orange</option>
+      </datalist>
+    </p>
+    <p>
+      <label for="t2">What's your e-mail address?</label>
+      <input type="email" id="t2" name="email">
+    </p>
+    <p>
+      <label for="t3">Leave a short message</label>
+      <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
+    </p>
+    <p>
+      <button>Submit</button>
+    </p>
+  </form>
+  <form>
+    <label for="mail">I would like you to provide me with an e-mail address:</label>
+    <input type="email" id="mail" name="mail">
+    <button>Submit</button>
+  </form>
+  <form novalidate>
+    <p>
+      <label for="mail">
+        <span>Please enter an email address:</span>
+        <input type="email" id="mail" name="mail" required minlength="8">
+        <span class="error" aria-live="polite"></span>
+      </label>
+    </p>
+    <button>Submit</button>
+  </form>
+  <script src="week10.js"></script>
+</body>
+<div>
+  <h3>
+    USING FETCH
+  </h3>
+  <p>
+    fetch('http://example.com/movies.json') <br>
+  .then(response => response.json()) <br>
+  .then(data => console.log(data)); <br>
+  </p>
+  <div><a href="week10Fetch.html">Check out the tutorial results on using fetch</a></div>
+  <p>
+    // Example POST method implementation:<br>
+async function postData(url = '', data = {}) {<br>
+  // Default options are marked with *<br>
+  const response = await fetch(url, {<br>
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.<br>
+    mode: 'cors', // no-cors, *cors, same-origin<br>
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached<br>
+    credentials: 'same-origin', // include, *same-origin, omit<br>
+    headers: {<br>
+      'Content-Type': 'application/json'<br>
+      // 'Content-Type': 'application/x-www-form-urlencoded',<br>
+    },<br>
+    redirect: 'follow', // manual, *follow, error<br>
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url<br>
+    body: JSON.stringify(data) // body data type must match "Content-Type" header<br>
+  });<br>
+  return response.json(); // parses JSON response into native JavaScript objects<br>
+}<br>
+<br>
+postData('https://example.com/answer', { answer: 42 })<br>
+  .then(data => {<br>
+    console.log(data); // JSON data parsed by `data.json()` call<br>
+  });<br>
+  </p>
+</div>
+</html>
