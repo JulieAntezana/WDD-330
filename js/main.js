@@ -42,6 +42,22 @@ var weeklist = [
   {
     label: 'Week 10',
     url: "./week10/week10.html"
+  },
+  {
+    label: 'Week 11',
+    url: "./week11/week11.html"
+  },
+  {
+    label: 'Week 12',
+    url: "./week12/week12.html"
+  },
+  {
+    label: 'Week 13',
+    url: "./week13/week13.html"
+  },
+  {
+    label: 'Week 14',
+    url: "./week14/week14.html"
   }
 ];
 listWeeklyItems(weeklist,"weekList");

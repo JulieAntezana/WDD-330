@@ -5,37 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-<link rel="stylesheet" href="week10.css">
-    <title>Week 10 Stuff</title>
+<link rel="stylesheet" href="./css/reading.css">
+    <title>Fun with Forms</title>
 </head>
 
 <body>
+  <h1>WDD 330 Portfolio</h1>
     <header>
         <nav>
-            <h2>Week 10 Stuff</h2>
+            <h2>Fun with Forms</h2>
             <a href="../week10.html">Back to Index</a>
         </nav>
         <hr>
     </header>
 <form ><div></div>
-    <label for="choose">Would you prefer a banana or cherry? (required)</label>
+    <label for="choose">Would you prefer a banana or a cherry? (required)</label>
     <input id="choose" name="i_like" required pattern="[Bb]anana|[Cc]herry" minlength="6" maxlength="6">
-</div>
+    </div>
+    <br>
+    <br>
     <div>
         <label for="number">How many would you like?</label>
         <input type="number" id="number" name="amount" value="1" min="1" max="10">
       </div>
       <div>
-        <button>Submit</button>
+        <button>Send My Request</button>
       </div> 
 </form>
-<div id="notesSection">
+<div>
 <p>
-    required: Specifies whether a form field needs to be filled in before the form can be submitted. <br>
-minlength and maxlength: Specifies the minimum and maximum length of textual data (strings) <br>
-min and max: Specifies the minimum and maximum values of numerical input types <br>
-type: Specifies whether the data needs to be a number, an email address, or some other specific preset type. <br>
-pattern: Specifies a regular expression that defines a pattern the entered data needs to follow. <br>
+    <strong>required:</strong> Specifies whether a form field needs to be filled in before the form can be submitted. <br>
+    <strong>minlength and maxlength:</strong> Specifies the minimum and maximum length of textual data (strings) <br>
+    <strong>min and max:</strong> Specifies the minimum and maximum values of numerical input types <br>
+    <strong>type:</strong> Specifies whether the data needs to be a number, an email address, or some other specific preset type. <br>
+    <strong>pattern:</strong> Specifies a regular expression that defines a pattern the entered data needs to follow. <br>
 </p>
 </div>
 <form id="register" method="post">
@@ -58,33 +61,35 @@ pattern: Specifies a regular expression that defines a pattern the entered data 
     </li>
     <li> 
         <label for="password">I would like my password to be:</label>
-        <p>(at least 6 characters, no spaces)</p>
+        (at least 6 characters, no spaces)
         <input type="password" id="password" name="password">
     </li>
+    <br>
     <li>
         <label for="rating">On a scale of 1 to 10, my knowledge of 
-↵HTML5 is:</label>
-        <input type="text" name="rating" id="rating">
+HTML5 is:</label>
+        <input type="number" name="rating" id="rating">
     </li>
+    <br>
     <li>
         <label for="startdate">Please start my subscription on:
-↵</label>
-        <input type="text" id="startdate" name="startdate">
+</label>
+        <input type="text" id="startdate" name="startdate" placeholder="start date">
     </li>
+    <br>
     <li>
-        <label for="quantity">I would like to receive <input 
-↵type="text" name="quantity" id="quantity"> copies of <cite>
-↵The HTML5 Herald</cite>.</label>
+        <label for="quantity">I would like to receive <span><input 
+type="number" name="quantity" id="quantity" placeholder="#"></span> copies of <cite>
+The HTML5 Herald</cite>.</label>
     </li>
+    <br>
     <li>
-        <label for="upsell">Also sign me up for <cite>The CSS3 
-↵Chronicle</cite></label>
+        <label for="upsell">Also sign me up for <cite>The CSS3 Chronicle</cite></label>
         <input type="checkbox" id="upsell" name="upsell" value="CSS 
-↵Chronicle">
+Chronicle">
     </li>
     <li>
-        <input type="submit" id="register-submit" value="Send Post 
-↵Haste">
+        <input type="submit" id="register-submit" value="Send My Request">
     </li>
     </ul>
 </form>
@@ -131,23 +136,23 @@ pattern: Specifies a regular expression that defines a pattern the entered data 
       <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
     </p>
     <p>
-      <button>Submit</button>
+      <button>Send My Message</button>
     </p>
   </form>
   <form>
-    <label for="mail">I would like you to provide me with an e-mail address:</label>
+    <label for="mail">Enter an email address below:</label>
     <input type="email" id="mail" name="mail">
-    <button>Submit</button>
+    <button>Send My Email Address</button>
   </form>
   <form novalidate>
     <p>
       <label for="mail">
-        <span>Please enter an email address:</span>
+        <span>Re-enter an email address below:</span>
         <input type="email" id="mail" name="mail" required minlength="8">
         <span class="error" aria-live="polite"></span>
       </label>
     </p>
-    <button>Submit</button>
+    <button>Send My Email Address</button>
   </form>
   <script src="week10.js"></script>
 </body>

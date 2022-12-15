@@ -12,12 +12,13 @@
 </head>
 
 <body>
+<h1>WDD 330 Portfolio</h1>
     <header>
         <nav>
             <h2>Week 10 FETCH</h2>
             <a href="../week10.html">Back to Index</a>
             <div>
-                <a href="week10.html">Back to Form Notes</a>
+                <a href="reading.html">Back to Form Notes</a>
             </div>
         </nav>
         <hr>
@@ -68,7 +69,7 @@
         }
 
         function getUsers() {
-            fetch('users.json')
+            fetch('./json/users.json')
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
@@ -140,7 +141,7 @@
         
 
 async function catchRainbow() {
-            const response = await fetch('rainbow.jpg');
+            const response = await fetch('./img/rainbow.jpg');
             const blob = await response.blob();
             document.getElementById('rainbow').src = URL.createObjectURL(blob);
         }

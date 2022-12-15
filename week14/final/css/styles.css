@@ -1,0 +1,121 @@
+body {
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;;
+  background-color: #6667ab4f;
+  max-width: 800px;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  background-color: #6667ab;
+  padding: 1em;
+  border-radius: 10px;
+}
+h1,
+h2 {
+  text-align: center;
+}
+/* max-width class applies to several containers*/
+.max-width {
+  max-width: 40em;
+}
+#toDoContainer {
+  background-color: #ccaf50;
+  margin: 2% 20%;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+#toDoList {
+  background-color: #282b23;
+  list-style-type: none;
+  padding: 0.5em;
+}
+#toDoList li {
+  display: grid;    
+  grid-template-columns: 20fr 1fr;
+  background-color: #eee;
+  width: 100%;
+  font-size: 1em;
+  padding: 0.2em 0;
+  border: solid 1px rgb(108, 106, 106);
+  border-radius: 10px;
+}
+#toDoList input {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 10px;
+}
+#toDoList button {
+  background-color: #ccaf50;
+  font-size: .6em;
+  text-align: center;
+  height: 3em;
+  width: 3em;
+  border-radius: 10px;
+  margin-right: 2px;
+}
+#filter {
+  display: table;
+  background-color: #282b23;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+#filter ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+#filter li {
+  background-color: #E3C1C0;
+  display: inline-flex;
+  font-size: 1em;
+  line-height: 2em;
+  text-align: center;
+  padding: 0.5em 1em;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+#numToDosLeft:hover {
+  background-color: rgb(179, 247, 247);
+}
+#all:hover,
+#active:hover,
+#done:hover {
+  background-color: rgb(179, 247, 247);
+}
+#filter li.active {
+  background-color: #ccaf50;
+  font-weight: 700;
+  font-size: 1.2em;
+  border: solid 2px black;
+  border-radius: 10px;
+}
+#newToDoContainer {
+  display: inline-flex;
+  margin: 2% 20%;
+  border-radius: 10px;
+}
+h2 {
+  margin-bottom: 0;
+}
+#newToDoInput {
+  font-style:italic;
+  font-size: 1em;
+  width: 26em;
+  line-height: 3em;
+  border: solid 1px #6667ab;
+  border-radius: 10px;
+}
+#addNewToDo {
+  width: 3rem;
+  height: 3.3rem;
+  font-size: 2em;
+  text-align: center;
+  background-color: #ccaf50;
+  border: solid 1px black;
+  border-radius: 10px;
+}

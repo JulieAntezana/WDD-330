@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>Floral ID Web App</title>
+    <link type="text/css" rel="stylesheet" href="./css/products.css" />
+    <link type="text/css" rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/index.js" type="module"></script>
+  </head>
+
+  <body>
+    <div>
+      <h1>WDD 330 Portfolio</h1>
+    </div>
+    <header>
+      <nav>
+        <heading>
+          <nav><ul id="mainNav"></ul></nav>
+        </heading>
+      </nav>
+      <h1>Floral ID App</h1>
+    </header>
+    <main id="content">
+      <h2>Overview</h2>
+      <p>
+        Do you enjoy floral bouquets? Have you thought about creating your own floral arrangements? Not sure where to begin? Then this app is for you. You will learn to identify the flowers that are used in your favorite designs. You'll be able to name your favorite designs and save them for later. Read the descriptions to learn which flowers are in the arrangement. If you are unfamiliar with a flower, click the Flowers List to learn more. (Links to external website. Right click to open link in new tab.)
+      </p>
+      <a href="https://www.floristone.com/item/flowers/">Flowers Used by Florist One in this App</a>
+      <hr />  
+      <!-- <h3>Floral Arrangements</h3> -->
+      <h2>Favorites</h2>
+    <div id="toDoContainer" class="max-width">
+
+        <ul id="toDoList" class="max-width" >
+
+        </ul>
+
+      <div id="filter" class="max-width">
+        <ul>
+          <li id="numToDosLeft">X tasks tasks left</li>
+          <li id="all" class="active">All</li>
+          <li id="active">Learning More</li>
+          <li id="done">Done</li>
+        </ul>
+      </div>
+    </div>
+    <h2>Add a new favorite here</h2>
+    <div id="newToDoContainer" class="max-width">
+      <input type="text" id="newToDoInput" placeholder="Enter name of arrangement you want to learn...">
+      <button type="button" id="addNewToDo">+</button>
+    </div>
+      <hr />
+      <div class="cards"></div>  
+      <!-- <section id="comments"></section>  -->
+ 
+      <!-- <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <div class="cards"></div>
+            <!-- <h2>Flip</h2> -->
+          </div>
+          <div class="flip-box-back">
+            <div class="cardback"
+            <!-- <h2>Flop</h2> -->
+          </div>
+        </div>
+      </div> -->
+
+    </main>
+    <footer>
+      <!-- <p><a href="/index.html">Portfolio</a></p> -->
+    </footer>
+    <!-- <script src="./js/get-arrangements.js"></script> -->
+    <!-- <script src="./js/index.js" type="module"></script> -->
+    <!-- <script src="./js/firstCall.js"></script> -->
+    <!-- <script src="./js/fetchProducts.js" type="module"></script> -->
+    <!-- <script src="./js/arrangements.js" type="module"></script> -->
+    <script src="./js/fetchFlowers.js" type="module"></script>
+
+
+  </body>
+</html>

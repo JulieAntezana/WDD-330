@@ -1,0 +1,54 @@
+header h1, footer {
+  font-family: Montserrat, sans-serif;
+  color: #ccaf50;
+  background-color: #282b23;
+  text-align: center;
+}
+
+h2 {
+  font-family: Montserrat;
+  font-weight: 700;
+  text-align: center;
+  color: #282b23;
+  background-color: #ccaf50;
+}
+
+.cards section {
+  color: #ccaf50;
+  background-color: #282b23;
+  margin: 0 auto;
+  max-width: 100%;
+  text-align: center;
+  padding: 1rem;
+  display: block;
+  box-shadow: 0 0 30px #333;
+  border: solid 1px black;
+  border-radius: 10px;
+}
+
+div.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 2rem;
+}
+
+img {
+  background-color: #eee;
+  margin-top: 1rem;
+}
+
+
+/* Desktop Views ****************************/
+@media screen and (min-width: 60em) {
+  .cards section {
+      max-width: 70%;
+  }
+
+  div.cards {
+      display: flex;
+      flex-flow: row wrap;
+  }
+
+}
+
